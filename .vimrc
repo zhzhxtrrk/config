@@ -1,7 +1,5 @@
 set nocompatible
 
-set rtp+=/usr/local/Cellar/go/1/misc/vim
-
 syntax on
 filetype plugin indent on
 

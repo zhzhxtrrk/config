@@ -39,9 +39,9 @@
    '(semantic-idle-scheduler-idle-time 1))
   (semantic-mode)
 
-  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
-  (local-set-key "\C-cc" 'semantic-ia-complete-symbol)
-  (local-set-key "\C-cd" 'semantic-ia-show-doc)
+  (global-set-key "\C-cj" 'semantic-ia-fast-jump)
+  (global-set-key "\C-cc" 'semantic-ia-complete-symbol)
+  (global-set-key "\C-cd" 'semantic-ia-show-doc)
 
   ;; (ede-cpp-root-project "FishingStar-Android"
   ;;                       :name "FishingStar-Android"
@@ -50,6 +50,8 @@
   ;;                                       "/Classes/TinyXml")
   ;;                       )
   )
+
+(my-load-dev)
 
 ;; ruby-mode
 (defvar ruby-mode-map
@@ -90,12 +92,12 @@
 (defun my-shell ()
   (interactive)
   (ansi-term "/bin/bash")
-  (rename-uniquely)
+  ;; (rename-uniquely)
   )
 
 ;; look and feel
-(set-cursor-color "#ff0000")
-(set-background-color "#111111")
-(set-foreground-color "#F4F4F4")
+;; (set-cursor-color "#ff0000")
+;; (set-background-color "#111111")
+;; (set-foreground-color "#F4F4F4")
 (setq-default cursor-type 'bar)
 
