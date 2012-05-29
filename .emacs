@@ -91,12 +91,12 @@
 ;; eshell
 (defun my-shell ()
   (interactive)
-  (ansi-term "/bin/bash")
+  (ansi-term)
   ;; (rename-uniquely)
   )
 
 ;; look and feel
-;; (set-cursor-color "#ff0000")
+(set-cursor-color "#ff0000")
 ;; (set-background-color "#111111")
 ;; (set-foreground-color "#F4F4F4")
 (setq-default cursor-type 'bar)
