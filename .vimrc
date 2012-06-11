@@ -16,11 +16,12 @@ set ruler
 set showcmd
 
 if has("gui")
-    colo darkblue
-    set guifont=SImPL:h14
+    set go=T
+    set guifont=Menlo:h14
 endif
 
 nnoremap j gj
 nnoremap k gk
 xnoremap j gj
 xnoremap k gk
+

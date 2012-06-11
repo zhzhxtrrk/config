@@ -51,7 +51,7 @@
   ;;                       )
   )
 
-(my-load-dev)
+;; (my-load-dev)
 
 ;; ruby-mode
 (defvar ruby-mode-map
@@ -75,6 +75,9 @@
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
+
+;; php-mode
+;; (require 'php-mode)
 
 ;; haskell mode
 (load "~/.emacs.d/haskell-mode-2.8.0/haskell-site-file.el")
