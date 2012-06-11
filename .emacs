@@ -21,38 +21,6 @@
 ;; highlight (){}
 (show-paren-mode t)
 
-;; full develop environment
-(defun my-load-dev ()
-  (interactive)
-
-  (global-ede-mode)
-  
-  (custom-set-variables
-   '(semantic-default-submodes '(global-semantic-decoration-mode
-                                 global-semantic-idle-completions-mode
-                                 global-semantic-idle-scheduler-mode
-                                 global-semanticdb-minor-mode
-                                 global-semantic-idle-summary-mode
-                                 ;; global-semantic-highlight-func-mode
-                                 ;; global-semantic-idle-local-symbol-highlight-mode
-                                 global-semantic-mru-bookmark-mode))
-   '(semantic-idle-scheduler-idle-time 1))
-  (semantic-mode)
-
-  (global-set-key "\C-cj" 'semantic-ia-fast-jump)
-  (global-set-key "\C-cc" 'semantic-ia-complete-symbol)
-  (global-set-key "\C-cd" 'semantic-ia-show-doc)
-
-  ;; (ede-cpp-root-project "FishingStar-Android"
-  ;;                       :name "FishingStar-Android"
-  ;;                       :file "/Users/zhzhxtrrk/Projects/Android/CMakeLists.txt"
-  ;;                       :include-path '("/arm-linux-androideabi-4.4.3/arm-linux-androideabi/include/c++"
-  ;;                                       "/Classes/TinyXml")
-  ;;                       )
-  )
-
-;; (my-load-dev)
-
 ;; ruby-mode
 (defvar ruby-mode-map
   (let ((map (make-sparse-keymap)))
@@ -79,24 +47,8 @@
 ;; php-mode
 ;; (require 'php-mode)
 
-;; haskell mode
-(load "~/.emacs.d/haskell-mode-2.8.0/haskell-site-file.el")
-(defun my-haskell-hook ()
-  (haskell-doc-mode 1)
-  (haskell-indentation-mode -1)
-  (haskell-indent-mode 1)
-  )
-(add-hook 'haskell-mode-hook 'my-haskell-hook)
-
 ;; go mode
 (require 'go-mode-load)
-
-;; eshell
-(defun my-shell ()
-  (interactive)
-  (ansi-term)
-  ;; (rename-uniquely)
-  )
 
 ;; look and feel
 (set-cursor-color "#ff0000")
