@@ -44,11 +44,11 @@
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 
-;; php-mode
-;; (require 'php-mode)
-
 ;; go mode
 (require 'go-mode-load)
+
+;; eshell
+(setq eshell-login-script "profile")
 
 ;; look and feel
 (set-cursor-color "#ff0000")
