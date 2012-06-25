@@ -51,8 +51,10 @@
 (setq eshell-login-script "profile")
 
 ;; look and feel
-(set-cursor-color "#ff0000")
-;; (set-background-color "#111111")
-;; (set-foreground-color "#F4F4F4")
-(setq-default cursor-type 'bar)
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+	(color-theme-initialize)
+	(color-theme-blue-mood)))
 
+(scroll-bar-mode -1)
