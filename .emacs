@@ -55,6 +55,8 @@
 (eval-after-load "color-theme"
   '(progn
 	(color-theme-initialize)
-	(color-theme-blue-mood)))
+	(color-theme-gnome2)
+	))
 
 (scroll-bar-mode -1)
+(tool-bar-mode -1)
