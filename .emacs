@@ -44,6 +44,13 @@
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 
+;; haskell-mode
+(setq load-path (cons (expand-file-name "~/.emacs.d/haskell-mode-2.8.0") load-path))
+(require 'haskell-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+
 ;; go mode
 (require 'go-mode-load)
 
