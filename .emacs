@@ -59,11 +59,13 @@
 
 ;; look and feel
 (require 'color-theme)
+
 (eval-after-load "color-theme"
   '(progn
 	(color-theme-initialize)
-	(color-theme-gnome2)
-	))
+	(cond (window-system (color-theme-gnome2)))
+	)
+  )
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
