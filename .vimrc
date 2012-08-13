@@ -25,3 +25,11 @@ nnoremap k gk
 xnoremap j gj
 xnoremap k gk
 
+nnoremap <F10> :NERDTreeToggle<CR>
+nnoremap tl :TlistToggle<CR>
+
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Show_One_File = 1
+let Tlist_Use_Right_Window = 1
+
+
