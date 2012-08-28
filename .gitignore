@@ -1,4 +1,6 @@
 .emacs.d/semanticdb/
 .emacs.d/elpa/
 .emacs.d/auto-save-list/
+.emacs.d/eshell/
+.emacs.d/tramp
 .vim/.*
