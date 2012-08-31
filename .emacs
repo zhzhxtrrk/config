@@ -24,13 +24,15 @@
 ;; ruby-mode
 (defvar ruby-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-j") 'newline)
     (define-key map (kbd "C-m") 'reindent-then-newline-and-indent)
     map)
   "keymap used in ruby mode")
 
 ;; lisp load path
 (setq load-path (cons (expand-file-name "~/.emacs.d/") load-path))
+
+;; php-mode
+(require 'php-mode)
 
 ;; lua-mode
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
@@ -54,6 +56,15 @@
 ;; go mode
 (require 'go-mode-load)
 
+;; js2-mode, may need to install from elpa first, not managed in git
+(add-hook 'js2-mode-hook
+		  '(lambda()
+			 (define-key js2-mode-map (kbd "C-m") 'newline-and-indent)))
+
+;; textmate
+(require 'textmate)
+(textmate-mode)
+
 ;; eshell
 (setq eshell-login-script "profile")
 
@@ -63,7 +74,7 @@
 (eval-after-load "color-theme"
   '(progn
 	(color-theme-initialize)
-	(cond (window-system (color-theme-gnome2)))
+	(cond (window-system (color-theme-vim-colors)))
 	)
   )
 
