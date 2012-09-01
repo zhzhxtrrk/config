@@ -33,6 +33,10 @@
 
 ;; php-mode
 (require 'php-mode)
+(require 'flymake-php)
+(add-hook 'php-mode-hook
+		  '(lambda()
+			 (flymake-php-load)))
 
 ;; lua-mode
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
@@ -80,3 +84,4 @@
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+(setq default-frame-alist '((width . 100) (height . 50)))
