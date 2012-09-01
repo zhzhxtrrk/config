@@ -33,10 +33,9 @@
 
 ;; php-mode
 (require 'php-mode)
-(require 'flymake-php)
 (add-hook 'php-mode-hook
-		  '(lambda()
-			 (flymake-php-load)))
+		  '(lambda ()
+			 (flymake-mode)))
 
 ;; lua-mode
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
