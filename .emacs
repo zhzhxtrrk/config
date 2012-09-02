@@ -29,7 +29,7 @@
   "keymap used in ruby mode")
 
 ;; lisp load path
-(setq load-path (cons (expand-file-name "~/.emacs.d/") load-path))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 ;; php-mode
 (require 'php-mode)
@@ -50,7 +50,7 @@
               auto-mode-alist))
 
 ;; haskell-mode
-(setq load-path (cons (expand-file-name "~/.emacs.d/haskell-mode-2.8.0") load-path))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/haskell-mode-2.8.0"))
 (require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
@@ -84,3 +84,8 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (setq default-frame-alist '((width . 100) (height . 50)))
+
+;; geben debuging support
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/geben"))
+(autoload 'geben "geben" "DBGp protocol frontend, a script debugger" t)
+
