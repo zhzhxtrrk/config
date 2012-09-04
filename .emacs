@@ -71,6 +71,12 @@
 ;; eshell
 (setq eshell-login-script "profile")
 
+;; common lisp
+(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
+(add-to-list 'load-path "~/.emacs.d/slime-2012-09-03")  ; your SLIME directory
+(require 'slime)
+(slime-setup)
+
 ;; look and feel
 (require 'color-theme)
 
