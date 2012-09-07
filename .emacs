@@ -66,13 +66,13 @@
 
 ;; textmate
 (require 'textmate)
-(textmate-mode)
+(textmate-mode t)
 
 ;; eshell
 (setq eshell-login-script "profile")
 
 ;; common lisp
-(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
+(setq inferior-lisp-program "/usr/local/bin/ccl64") ; your Lisp system
 (add-to-list 'load-path "~/.emacs.d/slime-2012-09-03")  ; your SLIME directory
 (require 'slime)
 (slime-setup)
@@ -83,9 +83,10 @@
 (eval-after-load "color-theme"
   '(progn
 	(color-theme-initialize)
-	(cond (window-system (color-theme-vim-colors)))
-	)
-  )
+	(cond (window-system
+		   ((lambda ()
+			  (color-theme-vim-colors)
+			  (set-default-font "Monaco-11")))))))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
