@@ -8,8 +8,9 @@
 ;; common key bindings
 (global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key [(f2)] 'shell-command)
+(global-set-key [(f3)] 'isearch-forward)
 (global-set-key [(f4)] 'delete-other-windows)
-(global-set-key [(f12)] 'compile)
+(global-set-key [(f6)] 'compile)
 
 ;; no startup screen
 (setq inhibit-startup-message t)
@@ -68,6 +69,10 @@
 (require 'textmate)
 (textmate-mode t)
 
+;; git
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/magit-1.1.1"))
+(require 'magit)
+
 ;; eshell
 (setq eshell-login-script "profile")
 
@@ -85,8 +90,7 @@
 	(color-theme-initialize)
 	(cond (window-system
 		   ((lambda ()
-			  (color-theme-vim-colors)
-			  (set-default-font "Monaco-11")))))))
+			  (color-theme-vim-colors)))))))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
