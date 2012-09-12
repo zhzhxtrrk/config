@@ -9,8 +9,10 @@
 (global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key [(f2)] 'shell-command)
 (global-set-key [(f3)] 'isearch-forward)
-(global-set-key [(f4)] 'delete-other-windows)
+(global-set-key [(f4)] 'delete-window)
 (global-set-key [(f6)] 'compile)
+(global-set-key [(f10)] 'dirtree-textmate-project)
+(global-set-key [(f11)] 'delete-other-windows)
 
 ;; no startup screen
 (setq inhibit-startup-message t)
@@ -69,6 +71,17 @@
 (require 'textmate)
 (textmate-mode t)
 
+
+;; dirtree
+(require 'dirtree)
+(setq dirtree-windata '(frame left 0.2 delete))
+(defun dirtree-textmate-project ()
+  (interactive)
+  (let ((project-root (textmate-project-root)))
+	   (cond (project-root (dirtree project-root nil))
+			 (t (message "no project found")))))
+
+
 ;; git
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/magit-1.1.1"))
 (require 'magit)
@@ -94,7 +107,7 @@
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-(setq default-frame-alist '((width . 100) (height . 50)))
+(setq default-frame-alist '((width . 120) (height . 50)))
 
 ;; geben debuging support
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/geben"))
