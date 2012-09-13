@@ -78,7 +78,7 @@
 (defun dirtree-textmate-project ()
   (interactive)
   (let ((project-root (textmate-project-root)))
-	   (cond (project-root (dirtree project-root nil))
+	   (cond (project-root (dirtree-in-buffer project-root t))
 			 (t (message "no project found")))))
 
 
@@ -110,7 +110,7 @@
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-(setq default-frame-alist '((width . 120) (height . 50)))
+(setq default-frame-alist '((width . 100) (height . 50)))
 
 ;; geben debuging support
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/geben"))
