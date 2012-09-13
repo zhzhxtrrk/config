@@ -86,8 +86,11 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/magit-1.1.1"))
 (require 'magit)
 
-;; eshell
+;; shell
 (setq eshell-login-script "profile")
+(add-hook 'term-exec-hook
+		  #'(lambda ()
+			  (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)))
 
 ;; common lisp
 (setq inferior-lisp-program "/usr/local/bin/ccl64") ; your Lisp system
@@ -103,7 +106,7 @@
 	(color-theme-initialize)
 	(cond (window-system
 		   ((lambda ()
-			  (color-theme-vim-colors)))))))
+			  (color-theme-blippblopp)))))))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
