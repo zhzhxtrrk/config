@@ -106,7 +106,7 @@
 	(color-theme-initialize)
 	(cond (window-system
 		   ((lambda ()
-			  (color-theme-blippblopp)))))))
+			  (color-theme-vim-colors)))))))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
