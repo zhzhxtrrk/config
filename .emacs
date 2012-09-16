@@ -106,7 +106,7 @@
 	(color-theme-initialize)
 	(cond (window-system
 		   ((lambda ()
-			  (color-theme-vim-colors)))))))
+			  (color-theme-tomorrow-night-bright)))))))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
