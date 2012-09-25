@@ -93,26 +93,37 @@
 			  (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)))
 
 ;; common lisp
-(setq inferior-lisp-program "/usr/local/bin/ccl64") ; your Lisp system
+(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
 (add-to-list 'load-path "~/.emacs.d/slime-2012-09-03")  ; your SLIME directory
 (require 'slime)
 (slime-setup)
 
+;; smooth scrolling
+(require 'smooth-scrolling)
+
 ;; look and feel
 (require 'color-theme)
-
 (eval-after-load "color-theme"
   '(progn
 	(color-theme-initialize)
-	(cond (window-system
-		   ((lambda ()
-			  (color-theme-tomorrow-night-bright)))))))
+	(cond (window-system (color-theme-cyberpunk)))))
 
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(setq default-frame-alist '((width . 100) (height . 50)))
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
+
+(cond (window-system (progn
+		       (scroll-bar-mode -1)
+		       (tool-bar-mode -1)
+		       (setq default-frame-alist '((width . 100) (height . 45)))
+		       (set-default-font "Consolas-15")
+		       (add-to-list 'default-frame-alist '(font . "Consolas-15")))))
+
 
 ;; geben debuging support
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/geben"))
 (autoload 'geben "geben" "DBGp protocol frontend, a script debugger" t)
+
+;; emacs server
+(unless (server-running-p)
+  (server-start))
 
