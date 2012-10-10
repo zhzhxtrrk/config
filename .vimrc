@@ -14,6 +14,7 @@ set hlsearch
 
 set ruler
 set showcmd
+set number
 
 if has("gui")
     set go=T
@@ -34,3 +35,5 @@ let Tlist_Use_Right_Window = 1
 
 nnoremap <F2> :FufCoverageFile<CR>
 nnoremap <F3> :FufTag<CR>
+
+call pathogen#infect()
