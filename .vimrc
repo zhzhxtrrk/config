@@ -37,3 +37,5 @@ nnoremap <F2> :FufCoverageFile<CR>
 nnoremap <F3> :FufTag<CR>
 
 call pathogen#infect()
+
+set laststatus=2
