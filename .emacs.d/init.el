@@ -58,7 +58,7 @@
 (require 'php-mode)
 (add-hook 'php-mode-hook
 		  '(lambda ()
-			 (flymake-mode)))
+			 (flymake-mode t)))
 
 ;; js2-mode, may need to install from elpa first, not managed in git
 (add-hook 'js2-mode-hook
