@@ -82,6 +82,13 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/magit-1.1.1"))
 (require 'magit)
 
+;; yasnippet
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/yasnippet"))
+(require 'yasnippet)
+(setq yas-snippet-dirs
+	  '("~/.emacs.d/yasnippet/snippets"))
+(yas-global-mode t)
+
 ;; shell
 (add-hook 'term-exec-hook
 		  #'(lambda ()
