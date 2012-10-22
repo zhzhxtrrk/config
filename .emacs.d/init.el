@@ -13,10 +13,13 @@
 (eval-after-load "color-theme"
   '(progn
 	(color-theme-initialize)
-	(cond (window-system (color-theme-cyberpunk)))))
+	(cond (window-system (color-theme-vim-colors)))))
 
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode t)
+(add-hook 'lisp-mode-hook (lambda ()
+							(rainbow-delimiters-mode t)))
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+							(rainbow-delimiters-mode t)))
 
 (cond (window-system (progn
 		       (scroll-bar-mode -1)
@@ -108,3 +111,4 @@
 (unless (server-running-p)
   (server-start))
 
+(setq speedbar-show-unknown-files t)
