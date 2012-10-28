@@ -68,6 +68,17 @@
 		  '(lambda()
 			 (define-key js2-mode-map (kbd "C-m") 'newline-and-indent)))
 
+;; multi-web-mode
+(add-to-list 'load-path "~/.emacs.d/multi-web-mode")
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+				  (ruby-mode "<%" "%>")
+				  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+				  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5" "erb"))
+(multi-web-global-mode t)
+
 ;; textmate
 (require 'textmate)
 (textmate-mode t)
