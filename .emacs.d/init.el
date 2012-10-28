@@ -9,11 +9,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 ;; look and feel
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-	(color-theme-initialize)
-	(cond (window-system (color-theme-vim-colors)))))
+(load-theme 'tango-dark)
 
 (require 'rainbow-delimiters)
 (add-hook 'lisp-mode-hook (lambda ()
@@ -63,11 +59,6 @@
 		  '(lambda ()
 			 (flymake-mode t)))
 
-;; js2-mode, may need to install from elpa first, not managed in git
-(add-hook 'js2-mode-hook
-		  '(lambda()
-			 (define-key js2-mode-map (kbd "C-m") 'newline-and-indent)))
-
 ;; multi-web-mode
 (add-to-list 'load-path "~/.emacs.d/multi-web-mode")
 (require 'multi-web-mode)
@@ -102,11 +93,6 @@
 (setq yas-snippet-dirs
 	  '("~/.emacs.d/yasnippet/snippets"))
 (yas-global-mode t)
-
-;; shell
-(add-hook 'term-exec-hook
-		  #'(lambda ()
-			  (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)))
 
 ;; common lisp
 (setq inferior-lisp-program "/usr/local/bin/ccl64") ; your Lisp system
