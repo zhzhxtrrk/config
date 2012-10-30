@@ -67,7 +67,7 @@
 				  (ruby-mode "<%" "%>")
 				  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
 				  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
-(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5" "erb"))
+(setq mweb-filename-extensions '("htm" "html" "phtml" "erb"))
 (multi-web-global-mode t)
 
 ;; textmate
@@ -76,7 +76,6 @@
 
 ;; dirtree
 (require 'dirtree)
-(setq dirtree-windata '(frame left 0.2 delete))
 (defun dirtree-textmate-project ()
   (interactive)
   (let ((project-root (textmate-project-root)))
