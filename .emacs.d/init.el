@@ -32,6 +32,7 @@
 (global-set-key [(f2)] 'shell-command)
 (global-set-key [(f3)] 'isearch-forward)
 (global-set-key [(f4)] 'delete-window)
+(global-set-key [(f5)] 'revert-buffer)
 (global-set-key [(f6)] 'compile)
 (global-set-key [(f10)] 'dirtree-textmate-project)
 (global-set-key [(f11)] 'delete-other-windows)
