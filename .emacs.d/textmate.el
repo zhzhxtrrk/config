@@ -128,7 +128,7 @@ by the project root.")
      (define-key map [(alt down)] 'textmate-column-down)
      (define-key map [(alt shift up)] 'textmate-column-up-with-select)
      (define-key map [(alt shift down)] 'textmate-column-down-with-select))
-    ((featurep 'ns)  ;; Emacs.app
+    ((and (featurep 'ns) window-system)  ;; Emacs.app
      (define-key map [(super meta return)] 'textmate-next-line)
      (define-key map [(super meta t)] 'textmate-clear-cache)
      (define-key map [(super meta \])] 'align)
