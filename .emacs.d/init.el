@@ -9,7 +9,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 ;; look and feel
-(load-theme 'tango-dark)
+(load-theme 'whiteboard)
 
 (require 'rainbow-delimiters)
 (add-hook 'lisp-mode-hook (lambda ()
@@ -59,6 +59,13 @@
 (add-hook 'php-mode-hook
 		  '(lambda ()
 			 (flymake-mode t)))
+
+;; haskell-mode
+(load "~/.emacs.d/haskell-mode/haskell-site-file.el")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ;; multi-web-mode
 (add-to-list 'load-path "~/.emacs.d/multi-web-mode")
