@@ -11,13 +11,15 @@ set shiftwidth=4
 set tabstop=4
 set showmatch
 set hlsearch
+set wildmenu
+set nowrap
 
 set ruler
 set showcmd
 set number
 
 if has("gui")
-    set go=T
+    set go=
     set guifont=Menlo:h14
 endif
 
@@ -34,7 +36,8 @@ let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
 
 nnoremap <F2> :FufCoverageFile<CR>
-nnoremap <F3> :FufTag<CR>
+nnoremap <F3> :FufBufferTagAll<CR>
+nnoremap <F4> :FufTag<CR>
 
 call pathogen#infect()
 
