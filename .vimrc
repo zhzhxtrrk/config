@@ -36,8 +36,9 @@ let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
 
 nnoremap <F2> :FufCoverageFile<CR>
-nnoremap <F3> :FufBufferTagAll<CR>
-nnoremap <F4> :FufTag<CR>
+nnoremap <F3> :FufBufferTag<CR>
+nnoremap <F4> :FufBufferTagAll<CR>
+nnoremap <F6> :FufTag<CR>
 
 call pathogen#infect()
 
