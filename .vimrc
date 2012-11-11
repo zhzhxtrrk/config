@@ -9,7 +9,9 @@ set nobk
 set expandtab
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
 set showmatch
+set incsearch
 set hlsearch
 set wildmenu
 set nowrap
@@ -21,6 +23,7 @@ set number
 if has("gui")
     set go=
     set guifont=Menlo:h14
+    set fullscreen
 endif
 
 nnoremap j gj
@@ -35,10 +38,11 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
 
-nnoremap <F2> :FufCoverageFile<CR>
-nnoremap <F3> :FufBufferTag<CR>
-nnoremap <F4> :FufBufferTagAll<CR>
-nnoremap <F6> :FufTag<CR>
+nmap <F2> :FufCoverageFile<CR>
+nmap <F3> :FufBufferTag<CR>
+nmap <F4> :FufBufferTagAll<CR>
+nmap <F6> :FufTag<CR>
+nmap <F8> :FufBuffer<CR>
 
 call pathogen#infect()
 
