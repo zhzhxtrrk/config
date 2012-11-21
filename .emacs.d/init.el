@@ -9,7 +9,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 ;; look and feel
-(load-theme 'whiteboard)
+(load-theme 'tango-dark)
 
 (require 'rainbow-delimiters)
 (add-hook 'lisp-mode-hook (lambda ()
@@ -21,8 +21,8 @@
 		       (scroll-bar-mode -1)
 		       (tool-bar-mode -1)
 		       (setq default-frame-alist '((width . 100) (height . 45)))
-		       (set-default-font "Consolas-15")
-		       (add-to-list 'default-frame-alist '(font . "Consolas-15")))))
+		       (set-default-font "Menlo-13")
+		       (add-to-list 'default-frame-alist '(font . "Menlo-13")))))
 
 ;; smooth scrolling
 (require 'smooth-scrolling)

@@ -23,7 +23,6 @@ set number
 if has("gui")
     set go=
     set guifont=Menlo:h14
-    set fullscreen
 endif
 
 nnoremap j gj
