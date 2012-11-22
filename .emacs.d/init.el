@@ -15,14 +15,14 @@
 (add-hook 'lisp-mode-hook (lambda ()
 							(rainbow-delimiters-mode t)))
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-							(rainbow-delimiters-mode t)))
+								  (rainbow-delimiters-mode t)))
 
 (cond (window-system (progn
-		       (scroll-bar-mode -1)
-		       (tool-bar-mode -1)
-		       (setq default-frame-alist '((width . 100) (height . 45)))
-		       (set-default-font "Menlo-13")
-		       (add-to-list 'default-frame-alist '(font . "Menlo-13")))))
+					   (scroll-bar-mode -1)
+					   (tool-bar-mode -1)
+					   (setq default-frame-alist '((width . 100) (height . 45)))
+					   (set-default-font "Menlo-13")
+					   (add-to-list 'default-frame-alist '(font . "Menlo-13")))))
 
 ;; smooth scrolling
 (require 'smooth-scrolling)
@@ -33,7 +33,7 @@
 (global-set-key [(f3)] 'isearch-forward)
 (global-set-key [(f4)] 'delete-window)
 (global-set-key [(f5)] 'revert-buffer)
-(global-set-key [(f6)] 'compile)
+(global-set-key [(f6)] 'my-compile-command)
 (global-set-key [(f10)] 'dirtree-textmate-project)
 (global-set-key [(f11)] 'delete-other-windows)
 
@@ -82,13 +82,24 @@
 (require 'textmate)
 (textmate-mode t)
 
+;; compile
+(setq compilation-scroll-output t)
+(defun my-compile-command ()
+  (interactive)
+  (let ((*textmate-project-roots* '("Makefile")))
+	(setq compile-command ((lambda()
+							 (let ((root (textmate-project-root)))
+							   (cond (root (concat "make -k " "-C " (textmate-project-root)))
+									 (t "make -k "))))))
+	(call-interactively 'compile)))
+
 ;; dirtree
 (require 'dirtree)
 (defun dirtree-textmate-project ()
   (interactive)
   (let ((project-root (textmate-project-root)))
-	   (cond (project-root (dirtree-in-buffer project-root t))
-			 (t (message "no project found")))))
+	(cond (project-root (dirtree-in-buffer project-root t))
+		  (t (message "no project found")))))
 
 ;; git
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/magit-1.1.1"))
