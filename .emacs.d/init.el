@@ -47,6 +47,11 @@
 ;; highlight (){}
 (show-paren-mode t)
 
+;; objc
+(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
+(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
+(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
+
 ;; ruby-mode
 (defvar ruby-mode-map
   (let ((map (make-sparse-keymap)))
@@ -86,7 +91,7 @@
 (setq compilation-scroll-output t)
 (defun my-compile-command ()
   (interactive)
-  (let ((*textmate-project-roots* '("Makefile")))
+  (let ((*textmate-project-roots* '(".emacs-project" "Makefile")))
 	(setq compile-command ((lambda()
 							 (let ((root (textmate-project-root)))
 							   (cond (root (concat "make -k " "-C " (textmate-project-root)))
