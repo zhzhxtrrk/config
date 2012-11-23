@@ -4,3 +4,4 @@
 .emacs.d/eshell/
 .emacs.d/tramp
 .vim/.*
+*.dat

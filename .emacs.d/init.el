@@ -9,20 +9,20 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 ;; look and feel
+(setq-default cursor-type 'bar)
 (load-theme 'tango-dark)
-
 (require 'rainbow-delimiters)
 (add-hook 'lisp-mode-hook (lambda ()
-							(rainbow-delimiters-mode t)))
+			    (rainbow-delimiters-mode t)))
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-								  (rainbow-delimiters-mode t)))
+				  (rainbow-delimiters-mode t)))
 
 (cond (window-system (progn
-					   (scroll-bar-mode -1)
-					   (tool-bar-mode -1)
-					   (setq default-frame-alist '((width . 100) (height . 45)))
-					   (set-default-font "Menlo-13")
-					   (add-to-list 'default-frame-alist '(font . "Menlo-13")))))
+		       (scroll-bar-mode -1)
+		       (tool-bar-mode -1)
+		       (setq default-frame-alist '((width . 100) (height . 45)))
+		       (set-default-font "Menlo-13")
+		       (add-to-list 'default-frame-alist '(font . "Menlo-13")))))
 
 ;; smooth scrolling
 (require 'smooth-scrolling)
@@ -41,8 +41,9 @@
 (setq inhibit-startup-message t)
 
 ;; use 4 spaces for indention
-(setq-default indent-tabs-mode -1)
-(setq default-tab-width 4)
+(setq indent-tabs-mode nil)
+(setq tab-width 4)
+(setq c-basic-offset 4)
 
 ;; highlight (){}
 (show-paren-mode t)
@@ -62,8 +63,8 @@
 ;; php-mode
 (require 'php-mode)
 (add-hook 'php-mode-hook
-		  '(lambda ()
-			 (flymake-mode t)))
+	  '(lambda ()
+	     (flymake-mode t)))
 
 ;; haskell-mode
 (load "~/.emacs.d/haskell-mode/haskell-site-file.el")
@@ -77,9 +78,9 @@
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-				  (ruby-mode "<%" "%>")
-				  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-				  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+		  (ruby-mode "<%" "%>")
+		  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+		  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
 (setq mweb-filename-extensions '("htm" "html" "phtml" "erb"))
 (multi-web-global-mode t)
 
@@ -92,19 +93,28 @@
 (defun my-compile-command ()
   (interactive)
   (let ((*textmate-project-roots* '(".emacs-project" "Makefile")))
-	(setq compile-command ((lambda()
-							 (let ((root (textmate-project-root)))
-							   (cond (root (concat "make -k " "-C " (textmate-project-root)))
-									 (t "make -k "))))))
-	(call-interactively 'compile)))
+    (setq compile-command ((lambda()
+			     (let ((root (textmate-project-root)))
+			       (cond (root (concat "make -k " "-C " root))
+				     (t "make -k "))))))
+    (call-interactively 'compile)))
+
+;; auto-complete
+(add-to-list 'load-path "~/.emacs.d/popup-el")
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
+(require 'auto-complete-config)
+(ac-config-default)
+(global-auto-complete-mode t)
+(setq ac-auto-start nil)
+(setq ac-trigger-key "M-/")
 
 ;; dirtree
 (require 'dirtree)
 (defun dirtree-textmate-project ()
   (interactive)
   (let ((project-root (textmate-project-root)))
-	(cond (project-root (dirtree-in-buffer project-root t))
-		  (t (message "no project found")))))
+    (cond (project-root (dirtree-in-buffer project-root t))
+	  (t (message "no project found")))))
 
 ;; git
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/magit-1.1.1"))
@@ -114,7 +124,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/yasnippet"))
 (require 'yasnippet)
 (setq yas-snippet-dirs
-	  '("~/.emacs.d/yasnippet/snippets"))
+      '("~/.emacs.d/yasnippet/snippets"))
 (yas-global-mode t)
 
 ;; common lisp

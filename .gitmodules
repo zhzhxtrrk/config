@@ -19,3 +19,9 @@
 [submodule ".vim/bundle/vim-rails"]
 	path = .vim/bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
+[submodule ".emacs.d/auto-complete"]
+	path = .emacs.d/auto-complete
+	url = https://github.com/auto-complete/auto-complete
+[submodule ".emacs.d/popup-el"]
+	path = .emacs.d/popup-el
+	url = git://github.com/auto-complete/popup-el.git
