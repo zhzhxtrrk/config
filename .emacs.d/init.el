@@ -16,6 +16,8 @@
 			    (rainbow-delimiters-mode t)))
 (add-hook 'emacs-lisp-mode-hook (lambda ()
 				  (rainbow-delimiters-mode t)))
+(add-hook 'clojure-mode-hook (lambda ()
+			       (rainbow-delimiters-mode t)))
 
 (cond (window-system (progn
 		       (scroll-bar-mode -1)
@@ -73,8 +75,15 @@
 (load "~/.emacs.d/haskell-mode/haskell-site-file.el")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
+;; clojure-mode
+(add-to-list 'load-path "~/.emacs.d/clojure-mode")
+(require 'clojure-mode)
+(add-to-list 'load-path "~/.emacs.d/nrepl")
+(require 'nrepl)
+(add-hook 'nrepl-interaction-mode-hook
+          (lambda ()
+	    (nrepl-turn-on-eldoc-mode t)))
 
 ;; multi-web-mode
 (add-to-list 'load-path "~/.emacs.d/multi-web-mode")

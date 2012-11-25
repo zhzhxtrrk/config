@@ -25,3 +25,9 @@
 [submodule ".emacs.d/popup-el"]
 	path = .emacs.d/popup-el
 	url = git://github.com/auto-complete/popup-el.git
+[submodule ".emacs.d/clojure-mode"]
+	path = .emacs.d/clojure-mode
+	url = git://github.com/technomancy/clojure-mode.git
+[submodule ".emacs.d/nrepl"]
+	path = .emacs.d/nrepl
+	url = git://github.com/kingtim/nrepl.el.git
