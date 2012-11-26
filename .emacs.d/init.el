@@ -11,14 +11,19 @@
 ;; safe themes
 (custom-set-variables
  '(custom-safe-themes (quote ("6bc195f4f8f9cf1a4b1946a12e33de2b156ce44e384fbc54f1bae5b81e3f5496" default))))
-(custom-set-faces
- )
 
 ;; look and feel
-(setq-default cursor-type 'bar)
-(set-cursor-color "yellow")
+(custom-set-faces
+ '(flymake-errline ((((class color)) (:underline "red"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow")))))
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/cyberpunk-theme")
 (load-theme 'cyberpunk)
+
+(global-hl-line-mode t)
+(setq-default cursor-type 'bar)
+(set-cursor-color "yellow")
+
 (require 'rainbow-delimiters)
 (add-hook 'lisp-mode-hook (lambda ()
 			    (rainbow-delimiters-mode t)))
@@ -117,6 +122,9 @@
 			       (cond (root (concat "make -k " "-C " root " "))
 				     (t "make -k "))))))
     (call-interactively 'compile)))
+
+;; eshell
+(setq eshell-cmpl-ignore-case t)
 
 ;; auto-complete
 (add-to-list 'load-path "~/.emacs.d/popup-el")
