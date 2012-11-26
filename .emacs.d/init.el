@@ -8,9 +8,17 @@
 ;; lisp load path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
+;; safe themes
+(custom-set-variables
+ '(custom-safe-themes (quote ("6bc195f4f8f9cf1a4b1946a12e33de2b156ce44e384fbc54f1bae5b81e3f5496" default))))
+(custom-set-faces
+ )
+
 ;; look and feel
 (setq-default cursor-type 'bar)
-(load-theme 'tango-dark)
+(set-cursor-color "yellow")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/cyberpunk-theme")
+(load-theme 'cyberpunk)
 (require 'rainbow-delimiters)
 (add-hook 'lisp-mode-hook (lambda ()
 			    (rainbow-delimiters-mode t)))
@@ -37,7 +45,6 @@
 (global-set-key [(f2)] 'shell-command)
 (global-set-key [(f3)] 'isearch-forward)
 (global-set-key [(f4)] 'delete-window)
-(global-set-key [(f5)] 'revert-buffer)
 (global-set-key [(f6)] 'my-compile-command)
 (global-set-key [(f10)] 'dirtree-textmate-project)
 (global-set-key [(f11)] 'delete-other-windows)
@@ -107,7 +114,7 @@
   (let ((*textmate-project-roots* '(".emacs-project" "Makefile")))
     (setq compile-command ((lambda()
 			     (let ((root (textmate-project-root)))
-			       (cond (root (concat "make -k " "-C " root))
+			       (cond (root (concat "make -k " "-C " root " "))
 				     (t "make -k "))))))
     (call-interactively 'compile)))
 

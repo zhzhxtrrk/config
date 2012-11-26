@@ -31,3 +31,6 @@
 [submodule ".emacs.d/nrepl"]
 	path = .emacs.d/nrepl
 	url = git://github.com/kingtim/nrepl.el.git
+[submodule ".emacs.d/cyberpunk-theme"]
+	path = .emacs.d/cyberpunk-theme
+	url = git://github.com/n3mo/cyberpunk-theme.el.git
