@@ -6,7 +6,7 @@
 (setq user-mail-address "zhzhxtrrk@gmail.com")
 
 ;; lisp load path
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path "~/.emacs.d")
 
 ;; safe themes
 (custom-set-variables
@@ -35,7 +35,6 @@
 (cond (window-system (progn
 		       (scroll-bar-mode -1)
 		       (tool-bar-mode -1)
-		       (setq default-frame-alist '((width . 100) (height . 45)))
 		       (set-default-font "Menlo-13")
 		       (add-to-list 'default-frame-alist '(font . "Menlo-13")))))
 
@@ -135,6 +134,15 @@
 (setq ac-auto-start nil)
 (setq ac-trigger-key "M-/")
 
+;; gtags
+(autoload 'gtags-mode "gtags" "" t)
+(defun my-enable-gtags ()
+  (interactive)
+  (setq gtags-suggested-key-mapping t)
+  (setq gtags-auto-update t)
+  (gtags-mode t)
+  (gtags-visit-rootdir))
+
 ;; dirtree
 (require 'dirtree)
 (defun dirtree-textmate-project ()
@@ -168,4 +176,5 @@
 (unless (server-running-p)
   (server-start))
 
+;; speedbar 
 (setq speedbar-show-unknown-files t)
