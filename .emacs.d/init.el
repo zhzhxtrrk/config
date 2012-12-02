@@ -2,8 +2,11 @@
 (setq make-backup-files nil)
 
 ;; user information
-(setq user-full-name "Steven Zhang")
-(setq user-mail-address "zhzhxtrrk@gmail.com")
+(if (file-exists-p "~/.userinfo.el")
+    (load "~/.userinfo.el")
+  (progn
+    (setq user-full-name "Mockup user")
+    (setq user-mail-address "mOckUp@UsEr.cOm")))
 
 ;; lisp load path
 (add-to-list 'load-path "~/.emacs.d")
