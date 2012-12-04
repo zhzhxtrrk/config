@@ -46,3 +46,5 @@ nmap <F8> :FufBuffer<CR>
 call pathogen#infect()
 
 set laststatus=2
+
+let g:Gtags_Auto_Update = 1

@@ -23,23 +23,21 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/cyberpunk-theme")
 (load-theme 'cyberpunk)
 
-(global-hl-line-mode t)
-(setq-default cursor-type 'bar)
-(set-cursor-color "yellow")
-
 (require 'rainbow-delimiters)
-(add-hook 'lisp-mode-hook (lambda ()
-			    (rainbow-delimiters-mode t)))
-(add-hook 'emacs-lisp-mode-hook (lambda ()
-				  (rainbow-delimiters-mode t)))
-(add-hook 'clojure-mode-hook (lambda ()
-			       (rainbow-delimiters-mode t)))
+(let ((hook (lambda ()
+	      (rainbow-delimiters-mode t))))
+  (add-hook 'lisp-mode-hook hook)
+  (add-hook 'emacs-lisp-mode-hook hook)
+  (add-hook 'clojure-mode-hook hook))
 
 (cond (window-system (progn
 		       (scroll-bar-mode -1)
 		       (tool-bar-mode -1)
 		       (set-default-font "Menlo-13")
-		       (add-to-list 'default-frame-alist '(font . "Menlo-13")))))
+		       (add-to-list 'default-frame-alist '(font . "Menlo-13"))
+		       (global-hl-line-mode t)
+		       (setq-default cursor-type 'bar)
+		       (set-cursor-color "yellow"))))
 
 ;; smooth scrolling
 (require 'smooth-scrolling)
@@ -96,7 +94,7 @@
 (add-to-list 'load-path "~/.emacs.d/nrepl")
 (require 'nrepl)
 (add-hook 'nrepl-interaction-mode-hook
-          (lambda ()
+	  (lambda ()
 	    (nrepl-turn-on-eldoc-mode t)))
 
 ;; multi-web-mode
