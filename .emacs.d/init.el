@@ -25,6 +25,7 @@
 
 (require 'rainbow-delimiters)
 (let ((hook (lambda ()
+	      (paredit-mode t)
 	      (rainbow-delimiters-mode t))))
   (add-hook 'lisp-mode-hook hook)
   (add-hook 'emacs-lisp-mode-hook hook)
@@ -64,6 +65,9 @@
 
 ;; highlight (){}
 (show-paren-mode t)
+
+;; paredit
+(require 'paredit)
 
 ;; objc
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
