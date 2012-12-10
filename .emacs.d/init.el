@@ -23,6 +23,10 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/cyberpunk-theme")
 (load-theme 'cyberpunk)
 
+;; paredit
+(require 'paredit)
+(add-hook 'php-mode-hook 'enable-paredit-mode)
+
 (require 'rainbow-delimiters)
 (let ((hook (lambda ()
 	      (paredit-mode t)
@@ -54,6 +58,8 @@
 (global-set-key [(f6)] 'my-compile-command)
 (global-set-key [(f10)] 'dirtree-textmate-project)
 (global-set-key [(f11)] 'delete-other-windows)
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
 
 ;; no startup screen
 (setq inhibit-startup-message t)
@@ -65,9 +71,6 @@
 
 ;; highlight (){}
 (show-paren-mode t)
-
-;; paredit
-(require 'paredit)
 
 ;; objc
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
