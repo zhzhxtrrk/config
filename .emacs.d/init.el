@@ -25,7 +25,6 @@
 
 ;; paredit
 (require 'paredit)
-(add-hook 'php-mode-hook 'enable-paredit-mode)
 
 (require 'rainbow-delimiters)
 (let ((hook (lambda ()
@@ -65,9 +64,9 @@
 (setq inhibit-startup-message t)
 
 ;; use 4 spaces for indention
-(setq indent-tabs-mode nil)
-(setq tab-width 4)
-(setq c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq-default c-basic-offset 4)
 
 ;; highlight (){}
 (show-paren-mode t)
