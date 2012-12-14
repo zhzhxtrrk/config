@@ -1,4 +1,5 @@
 set nocompatible
+set backspace=2
 
 syntax on
 filetype plugin indent on
@@ -14,7 +15,6 @@ set showmatch
 set incsearch
 set hlsearch
 set wildmenu
-set nowrap
 
 set ruler
 set showcmd
