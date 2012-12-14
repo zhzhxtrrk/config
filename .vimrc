@@ -19,10 +19,15 @@ set wildmenu
 set ruler
 set showcmd
 set number
+set scrolloff=3
 
 if has("gui")
     set go=
     set guifont=Menlo:h14
+endif
+
+if has("mouse")
+    set mouse=a
 endif
 
 nnoremap j gj
