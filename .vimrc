@@ -47,6 +47,7 @@ nnoremap <C-l> <C-w>l
 
 " bundle support
 call pathogen#infect()
+call pathogen#helptags()
 
 " NERDTree & Taglist settings
 nnoremap <F10> :NERDTreeToggle<CR>
@@ -68,3 +69,6 @@ set laststatus=2
 
 " gtags map
 nnoremap <C-\> :Gtags 
+
+" Python-mode
+let g:pymode_folding = 0
