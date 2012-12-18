@@ -45,6 +45,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+imap <D-/> <C-x><C-o>
+
 " bundle support
 call pathogen#infect()
 call pathogen#helptags()
@@ -62,7 +64,7 @@ map <D-t> :CommandT<CR>
 map <D-T> :CommandTGtagBuffer<CR>
 map <D-r> :CommandTGtag<CR>
 " auto update gtags database
-au BufWritePost *.* silent CommandTGtagUpdate 
+au BufWritePost * silent CommandTGtagUpdate 
 
 " show status bar by default
 set laststatus=2
