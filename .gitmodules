@@ -36,7 +36,4 @@
 	url = git://github.com/n3mo/cyberpunk-theme.el.git
 [submodule ".vim/bundle/Command-T"]
 	path = .vim/bundle/Command-T
-	url = git@github.com:zhzhxtrrk/Command-T.git
-[submodule ".vim/bundle/python-mode"]
-	path = .vim/bundle/python-mode
-	url = git://github.com/klen/python-mode.git
+	url = git://github.com/zhzhxtrrk/Command-T.git

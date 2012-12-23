@@ -37,8 +37,8 @@
 (cond (window-system (progn
 		       (scroll-bar-mode -1)
 		       (tool-bar-mode -1)
-		       (set-default-font "Menlo-16")
-		       (add-to-list 'default-frame-alist '(font . "Menlo-16"))
+		       (set-default-font "Monaco-14")
+		       (add-to-list 'default-frame-alist '(font . "Monaco-14"))
 		       (global-hl-line-mode t)
 		       (setq-default cursor-type 'bar)
 		       (set-cursor-color "yellow"))))
