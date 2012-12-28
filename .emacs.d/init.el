@@ -60,7 +60,6 @@
 (global-set-key [(f11)] 'delete-other-windows)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C-\\") 'undo)
 
 ;; no startup screen
 (setq inhibit-startup-message t)
