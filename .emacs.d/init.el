@@ -48,9 +48,10 @@
 
 ;; common key bindings
 (global-set-key (kbd "C-m") 'newline-and-indent)
-(global-set-key (kbd "C-x C-c") (lambda ()
-				  (interactive)
-				  (message "Want to quit? try M-x save-buffers-kill-terminal RET")))
+(when window-system
+  (global-set-key (kbd "C-x C-c") (lambda ()
+                                    (interactive)
+                                    (message "Want to quit? try M-x save-buffers-kill-terminal RET"))))
 (global-set-key [(f2)] 'shell-command)
 (global-set-key [(f3)] 'isearch-forward)
 (global-set-key [(f4)] 'delete-window)
@@ -59,6 +60,7 @@
 (global-set-key [(f11)] 'delete-other-windows)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-\\") 'undo)
 
 ;; no startup screen
 (setq inhibit-startup-message t)
