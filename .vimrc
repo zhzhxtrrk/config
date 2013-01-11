@@ -45,8 +45,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-imap <D-/> <C-x><C-o>
-
 " bundle support
 call pathogen#infect()
 call pathogen#helptags()
@@ -69,8 +67,13 @@ au BufWritePost * silent CommandTGtagUpdate
 " show status bar by default
 set laststatus=2
 
+" use c syntax for objc .h files
+let g:c_syntax_for_h=1
+
+" clojure
+let g:vimclojure#HighlightBuiltins = 1
+let g:vimclujure#ParenRainbow = 1
+
 " gtags map
 nnoremap <C-\> :Gtags 
 
-" Python-mode
-let g:pymode_folding = 0

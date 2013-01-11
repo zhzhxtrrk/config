@@ -37,8 +37,6 @@
 (cond (window-system (progn
 		       (scroll-bar-mode -1)
 		       (tool-bar-mode -1)
-		       (set-default-font "Monaco-14")
-		       (add-to-list 'default-frame-alist '(font . "Monaco-14"))
 		       (global-hl-line-mode t)
 		       (setq-default cursor-type 'bar)
 		       (set-cursor-color "yellow"))))
@@ -175,10 +173,6 @@
 (add-to-list 'load-path "~/.emacs.d/slime-2012-09-03")  ; your SLIME directory
 (require 'slime)
 (slime-setup)
-
-;; geben debuging support
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/geben"))
-(autoload 'geben "geben" "DBGp protocol frontend, a script debugger" t)
 
 ;; emacs server
 (unless (server-running-p)
