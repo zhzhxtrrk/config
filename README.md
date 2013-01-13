@@ -1,6 +1,6 @@
-= this is my personal emacs and vim config files =
+# this is my personal emacs and vim config files
 
-*NOTICE* vim scripts will not well maintained. but works fine.
+**NOTICE** vim scripts will not well maintained. but works fine.
 
 If you find any part of this repository is useful, please feel free to take it and merge it to yourself's config.
 
