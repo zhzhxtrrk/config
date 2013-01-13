@@ -20,26 +20,30 @@
  '(flymake-errline ((((class color)) (:underline "red"))))
  '(flymake-warnline ((((class color)) (:underline "yellow")))))
 
+;; add cyberpunk-theme load-path
 (add-to-list 'custom-theme-load-path "~/.emacs.d/cyberpunk-theme")
-(load-theme 'cyberpunk)
+
+;; load color theme
+(load-theme 'misterioso)
 
 ;; paredit
 (require 'paredit)
 
 (require 'rainbow-delimiters)
 (let ((hook (lambda ()
-	      (paredit-mode t)
-	      (rainbow-delimiters-mode t))))
+              (paredit-mode t)
+              (rainbow-delimiters-mode t))))
   (add-hook 'lisp-mode-hook hook)
   (add-hook 'emacs-lisp-mode-hook hook)
   (add-hook 'clojure-mode-hook hook))
 
 (cond (window-system (progn
-		       (scroll-bar-mode -1)
-		       (tool-bar-mode -1)
-		       (global-hl-line-mode t)
-		       (setq-default cursor-type 'bar)
-		       (set-cursor-color "yellow"))))
+                       (set-fringe-mode '(1 . 1))
+                       (scroll-bar-mode -1)
+                       (tool-bar-mode -1)
+                       ;; (global-hl-line-mode t)
+                       (add-to-list 'default-frame-alist
+                                    '(cursor-color . "yellow")))))
 
 ;; smooth scrolling
 (require 'smooth-scrolling)
@@ -85,8 +89,8 @@
 ;; php-mode
 (require 'php-mode)
 (add-hook 'php-mode-hook
-	  '(lambda ()
-	     (flymake-mode t)))
+          '(lambda ()
+             (flymake-mode t)))
 
 ;; haskell-mode
 (load "~/.emacs.d/haskell-mode/haskell-site-file.el")
@@ -99,17 +103,17 @@
 (add-to-list 'load-path "~/.emacs.d/nrepl")
 (require 'nrepl)
 (add-hook 'nrepl-interaction-mode-hook
-	  (lambda ()
-	    (nrepl-turn-on-eldoc-mode t)))
+          (lambda ()
+            (nrepl-turn-on-eldoc-mode t)))
 
 ;; multi-web-mode
 (add-to-list 'load-path "~/.emacs.d/multi-web-mode")
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-		  (ruby-mode "<%" "%>")
-		  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-		  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+                  (ruby-mode "<%" "%>")
+                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
 (setq mweb-filename-extensions '("htm" "html" "phtml" "erb"))
 (multi-web-global-mode t)
 
@@ -122,10 +126,9 @@
 (defun my-compile-command ()
   (interactive)
   (let ((*textmate-project-roots* '(".emacs-project" "Makefile")))
-    (setq compile-command ((lambda()
-			     (let ((root (textmate-project-root)))
-			       (cond (root (concat "make -k " "-C " root " "))
-				     (t "make -k "))))))
+    (setq compile-command (let (root (textmate-project-root))
+                            (cond (root (concat "make -k " "-C " root " "))
+                                  (t "make -k "))))
     (call-interactively 'compile)))
 
 ;; eshell
@@ -155,7 +158,7 @@
   (interactive)
   (let ((project-root (textmate-project-root)))
     (cond (project-root (dirtree-in-buffer project-root t))
-	  (t (message "no project found")))))
+          (t (message "no project found")))))
 
 ;; git
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/magit-1.1.1"))
