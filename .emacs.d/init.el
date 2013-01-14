@@ -62,6 +62,7 @@
 (global-set-key [(f11)] 'delete-other-windows)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "s-b") 'my-quick-switch)
 
 ;; no startup screen
 (setq inhibit-startup-message t)
@@ -120,6 +121,35 @@
 ;; textmate
 (require 'textmate)
 (textmate-mode t)
+
+;; quick switch
+(defvar *my-switch-table*
+  '((("m" "mm" "c" "cpp" "cxx" "cc") ("h" "hpp" "hh"))))
+
+(defun my-possible-exts (ext)
+  (when *my-switch-table*
+    (let ((swith-item (car *my-switch-table*)))
+      (let ((c1 (car swith-item))
+            (c2 (cadr swith-item)))
+        (cond ((find ext c1 :test #'equal) c2)
+              ((find ext c2 :test #'equal) c1)
+              (t (let ((*my-switch-table* (cdr *my-switch-table*)))
+                   (my-possible-exts ext))))))))
+
+(defun my-try-switch (file-path-without-ext possible-exts)
+  (when possible-exts
+    (let ((file-path (concat file-path-without-ext "." (car possible-exts))))
+      (if (and (file-exists-p file-path) (file-regular-p file-path))
+          (find-file file-path)
+        (my-try-switch file-path-without-ext (cdr possible-exts))))))
+
+(defun my-quick-switch ()
+  (interactive)
+  (let ((file-path (buffer-name)))
+    (let ((file-ext (file-name-extension file-path)))
+      (when file-ext
+        (my-try-switch (file-name-sans-extension file-path)
+                       (my-possible-exts file-ext))))))
 
 ;; compile
 (setq compilation-scroll-output t)
