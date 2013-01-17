@@ -118,6 +118,10 @@
 (setq mweb-filename-extensions '("htm" "html" "phtml" "erb"))
 (multi-web-global-mode t)
 
+;; helm
+(add-to-list 'load-path "~/.emacs.d/helm")
+(require 'helm-config)
+
 ;; textmate
 (require 'textmate)
 (textmate-mode t)
@@ -145,11 +149,10 @@
 
 (defun my-quick-switch ()
   (interactive)
-  (let ((file-path (buffer-name)))
-    (let ((file-ext (file-name-extension file-path)))
-      (when file-ext
-        (my-try-switch (file-name-sans-extension file-path)
-                       (my-possible-exts file-ext))))))
+  (let ((file-path (buffer-file-name)))
+    (when file-path
+      (my-try-switch (file-name-sans-extension file-path)
+                     (my-possible-exts (file-name-extension file-path))))))
 
 ;; compile
 (setq compilation-scroll-output t)
