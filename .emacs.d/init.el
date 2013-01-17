@@ -118,10 +118,6 @@
 (setq mweb-filename-extensions '("htm" "html" "phtml" "erb"))
 (multi-web-global-mode t)
 
-;; helm
-(add-to-list 'load-path "~/.emacs.d/helm")
-(require 'helm-config)
-
 ;; textmate
 (require 'textmate)
 (textmate-mode t)
