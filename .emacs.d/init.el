@@ -167,6 +167,7 @@
 (add-to-list 'load-path "~/.emacs.d/popup-el")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (require 'auto-complete-config)
+(add-to-list 'ac-modes 'objc-mode)
 (ac-config-default)
 (global-auto-complete-mode t)
 (setq ac-auto-start nil)
