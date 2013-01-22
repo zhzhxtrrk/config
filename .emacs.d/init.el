@@ -26,6 +26,11 @@
 ;; load color theme
 (load-theme 'misterioso)
 
+;; cursor
+(add-to-list 'default-frame-alist
+             '(cursor-color . "yellow"))
+(blink-cursor-mode -1)
+
 ;; paredit
 (require 'paredit)
 
@@ -42,10 +47,9 @@
                        (scroll-bar-mode -1)
                        (tool-bar-mode -1)
                        ;; (global-hl-line-mode t)
-                       (add-to-list 'default-frame-alist
-                                    '(cursor-color . "yellow")))))
+                       )))
 
-;; smooth scrolling
+ ;; smooth scrolling
 (require 'smooth-scrolling)
 
 ;; common key bindings
@@ -160,9 +164,6 @@
                                   (t "make -k "))))
     (call-interactively 'compile)))
 
-;; eshell
-(setq eshell-cmpl-ignore-case t)
-
 ;; auto-complete
 (add-to-list 'load-path "~/.emacs.d/popup-el")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
@@ -170,8 +171,8 @@
 (add-to-list 'ac-modes 'objc-mode)
 (ac-config-default)
 (global-auto-complete-mode t)
-(setq ac-auto-start nil)
-(setq ac-trigger-key "M-/")
+;; (setq ac-auto-start nil)
+;; (setq ac-trigger-key "M-/")
 
 ;; gtags
 (autoload 'gtags-mode "gtags" "" t)
