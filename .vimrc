@@ -26,7 +26,6 @@ set nowrap
 
 if has("gui")
     set go=
-    set guifont=Menlo:h14
 endif
 
 if has("mouse")
