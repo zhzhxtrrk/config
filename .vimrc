@@ -67,7 +67,7 @@ map <D-r> :CommandTGtag<CR>
 " for console
 map ,t :CommandT<CR>
 map ,T :CommandTGtagBuffer<CR>
-map ,R :CommandTGtag<CR>
+map ,r :CommandTGtag<CR>
 
 " cocoa
 map ,s :Alternate<CR>
