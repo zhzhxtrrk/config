@@ -22,10 +22,14 @@ set showcmd
 set number
 set scrolloff=3
 
-set nowrap
-
 if has("gui")
     set go=
+    nnoremap j gj
+    nnoremap k gk
+    xnoremap j gj
+    xnoremap k gk
+else
+    set nowrap
 endif
 
 if has("mouse")
@@ -33,11 +37,6 @@ if has("mouse")
 endif
 
 " common map
-nnoremap j gj
-nnoremap k gk
-xnoremap j gj
-xnoremap k gk
-
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
