@@ -171,8 +171,8 @@
 (add-to-list 'ac-modes 'objc-mode)
 (ac-config-default)
 (global-auto-complete-mode t)
-;; (setq ac-auto-start nil)
-;; (setq ac-trigger-key "M-/")
+(setq ac-auto-start nil)
+(setq ac-trigger-key "M-/")
 
 ;; gtags
 (autoload 'gtags-mode "gtags" "" t)
