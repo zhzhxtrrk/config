@@ -10,12 +10,6 @@
 [submodule ".vim/bundle/snipmate.vim"]
 	path = .vim/bundle/snipmate.vim
 	url = git://github.com/msanders/snipmate.vim.git
-[submodule ".emacs.d/multi-web-mode"]
-	path = .emacs.d/multi-web-mode
-	url = git://github.com/fgallina/multi-web-mode.git
-[submodule ".emacs.d/haskell-mode"]
-	path = .emacs.d/haskell-mode
-	url = git://github.com/haskell/haskell-mode.git
 [submodule ".vim/bundle/vim-rails"]
 	path = .vim/bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
@@ -25,12 +19,6 @@
 [submodule ".emacs.d/popup-el"]
 	path = .emacs.d/popup-el
 	url = git://github.com/auto-complete/popup-el.git
-[submodule ".emacs.d/clojure-mode"]
-	path = .emacs.d/clojure-mode
-	url = git://github.com/technomancy/clojure-mode.git
-[submodule ".emacs.d/nrepl"]
-	path = .emacs.d/nrepl
-	url = git://github.com/kingtim/nrepl.el.git
 [submodule ".emacs.d/cyberpunk-theme"]
 	path = .emacs.d/cyberpunk-theme
 	url = git://github.com/n3mo/cyberpunk-theme.el.git

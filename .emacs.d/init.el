@@ -11,20 +11,13 @@
 ;; lisp load path
 (add-to-list 'load-path "~/.emacs.d")
 
-;; safe themes
-(custom-set-variables
- '(custom-safe-themes (quote ("6bc195f4f8f9cf1a4b1946a12e33de2b156ce44e384fbc54f1bae5b81e3f5496" default))))
-
-;; look and feel
-(custom-set-faces
- '(flymake-errline ((((class color)) (:underline "red"))))
- '(flymake-warnline ((((class color)) (:underline "yellow")))))
-
-;; add cyberpunk-theme load-path
-(add-to-list 'custom-theme-load-path "~/.emacs.d/cyberpunk-theme")
-
 ;; load color theme
-(load-theme 'misterioso)
+(custom-set-variables
+ '(custom-safe-themes
+   '("6bc195f4f8f9cf1a4b1946a12e33de2b156ce44e384fbc54f1bae5b81e3f5496" default)))
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/cyberpunk-theme")
+(load-theme 'cyberpunk)
 
 ;; cursor
 (add-to-list 'default-frame-alist
@@ -39,8 +32,7 @@
               (paredit-mode t)
               (rainbow-delimiters-mode t))))
   (add-hook 'lisp-mode-hook hook)
-  (add-hook 'emacs-lisp-mode-hook hook)
-  (add-hook 'clojure-mode-hook hook))
+  (add-hook 'emacs-lisp-mode-hook hook))
 
 (cond (window-system (progn
                        (set-fringe-mode '(1 . 1))
@@ -54,15 +46,8 @@
 
 ;; common key bindings
 (global-set-key (kbd "C-m") 'newline-and-indent)
-(when window-system
-  (global-set-key (kbd "C-x C-c") (lambda ()
-                                    (interactive)
-                                    (message "Want to quit? try M-x save-buffers-kill-terminal RET"))))
-(global-set-key [(f2)] 'shell-command)
-(global-set-key [(f3)] 'isearch-forward)
 (global-set-key [(f4)] 'delete-window)
 (global-set-key [(f6)] 'my-compile-command)
-(global-set-key [(f10)] 'dirtree-textmate-project)
 (global-set-key [(f11)] 'delete-other-windows)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
@@ -90,37 +75,6 @@
     (define-key map (kbd "C-m") 'reindent-then-newline-and-indent)
     map)
   "keymap used in ruby mode")
-
-;; php-mode
-(require 'php-mode)
-(add-hook 'php-mode-hook
-          '(lambda ()
-             (flymake-mode t)))
-
-;; haskell-mode
-(load "~/.emacs.d/haskell-mode/haskell-site-file.el")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
-;; clojure-mode
-(add-to-list 'load-path "~/.emacs.d/clojure-mode")
-(require 'clojure-mode)
-(add-to-list 'load-path "~/.emacs.d/nrepl")
-(require 'nrepl)
-(add-hook 'nrepl-interaction-mode-hook
-          (lambda ()
-            (nrepl-turn-on-eldoc-mode t)))
-
-;; multi-web-mode
-(add-to-list 'load-path "~/.emacs.d/multi-web-mode")
-(require 'multi-web-mode)
-(setq mweb-default-major-mode 'html-mode)
-(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                  (ruby-mode "<%" "%>")
-                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
-(setq mweb-filename-extensions '("htm" "html" "phtml" "erb"))
-(multi-web-global-mode t)
 
 ;; textmate
 (require 'textmate)
@@ -183,18 +137,6 @@
   (gtags-mode t)
   (gtags-visit-rootdir))
 
-;; dirtree
-(require 'dirtree)
-(defun dirtree-textmate-project ()
-  (interactive)
-  (let ((project-root (textmate-project-root)))
-    (cond (project-root (dirtree-in-buffer project-root t))
-          (t (message "no project found")))))
-
-;; git
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/magit-1.1.1"))
-(require 'magit)
-
 ;; yasnippet
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/yasnippet"))
 (require 'yasnippet)
@@ -202,15 +144,11 @@
       '("~/.emacs.d/yasnippet/snippets"))
 (yas-global-mode t)
 
-;; common lisp
+;; lisp
 (setq inferior-lisp-program "/usr/local/bin/ccl64") ; your Lisp system
 (add-to-list 'load-path "~/.emacs.d/slime-2012-09-03")  ; your SLIME directory
 (require 'slime)
 (slime-setup)
-
-;; emacs server
-(unless (server-running-p)
-  (server-start))
 
 ;; speedbar 
 (setq speedbar-show-unknown-files t)

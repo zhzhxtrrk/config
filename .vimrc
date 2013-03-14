@@ -49,7 +49,6 @@ autocmd BufReadPost *
 
 " bundle support
 call pathogen#infect()
-call pathogen#helptags()
 
 " NERDTree & Taglist settings
 nnoremap <F10> :NERDTreeToggle<CR>
