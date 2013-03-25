@@ -11,17 +11,7 @@
 ;; lisp load path
 (add-to-list 'load-path "~/.emacs.d")
 
-;; load color theme
-(custom-set-variables
- '(custom-safe-themes
-   '("6bc195f4f8f9cf1a4b1946a12e33de2b156ce44e384fbc54f1bae5b81e3f5496" default)))
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/cyberpunk-theme")
-(load-theme 'cyberpunk)
-
 ;; cursor
-(add-to-list 'default-frame-alist
-             '(cursor-color . "yellow"))
 (blink-cursor-mode -1)
 
 ;; paredit
@@ -112,11 +102,10 @@
 (setq compilation-scroll-output t)
 (defun my-compile-command ()
   (interactive)
-  (let ((*textmate-project-roots* '(".emacs-project" "Makefile")))
-    (setq compile-command (let (root (textmate-project-root))
+  (setq compile-command (let (root (textmate-project-root))
                             (cond (root (concat "make -k " "-C " root " "))
                                   (t "make -k "))))
-    (call-interactively 'compile)))
+  (call-interactively 'compile))
 
 ;; auto-complete
 (add-to-list 'load-path "~/.emacs.d/popup-el")
@@ -125,8 +114,6 @@
 (add-to-list 'ac-modes 'objc-mode)
 (ac-config-default)
 (global-auto-complete-mode t)
-(setq ac-auto-start nil)
-(setq ac-trigger-key "M-/")
 
 ;; gtags
 (autoload 'gtags-mode "gtags" "" t)

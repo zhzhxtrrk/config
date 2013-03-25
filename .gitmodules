@@ -19,9 +19,6 @@
 [submodule ".emacs.d/popup-el"]
 	path = .emacs.d/popup-el
 	url = git://github.com/auto-complete/popup-el.git
-[submodule ".emacs.d/cyberpunk-theme"]
-	path = .emacs.d/cyberpunk-theme
-	url = git://github.com/n3mo/cyberpunk-theme.el.git
 [submodule ".vim/bundle/Command-T"]
 	path = .vim/bundle/Command-T
 	url = git://github.com/zhzhxtrrk/Command-T.git
