@@ -13,6 +13,7 @@
 
 ;; cursor
 (blink-cursor-mode -1)
+(set-default 'cursor-type 'bar)
 
 ;; paredit
 (require 'paredit)
@@ -28,10 +29,9 @@
                        (set-fringe-mode '(1 . 1))
                        (scroll-bar-mode -1)
                        (tool-bar-mode -1)
-                       ;; (global-hl-line-mode t)
-                       )))
+                       (load-theme 'dichromacy t))))
 
- ;; smooth scrolling
+;; smooth scrolling
 (require 'smooth-scrolling)
 
 ;; common key bindings
@@ -41,7 +41,7 @@
 (global-set-key [(f11)] 'delete-other-windows)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "s-b") 'my-quick-switch)
+(global-set-key (kbd "M-`") 'my-quick-switch)
 
 ;; no startup screen
 (setq inhibit-startup-message t)
@@ -103,8 +103,8 @@
 (defun my-compile-command ()
   (interactive)
   (setq compile-command (let (root (textmate-project-root))
-                            (cond (root (concat "make -k " "-C " root " "))
-                                  (t "make -k "))))
+                          (cond (root (concat "make -k " "-C " root " "))
+                                (t "make -k "))))
   (call-interactively 'compile))
 
 ;; auto-complete
@@ -114,6 +114,8 @@
 (add-to-list 'ac-modes 'objc-mode)
 (ac-config-default)
 (global-auto-complete-mode t)
+(setq ac-auto-start nil)
+(setq ac-trigger-key "M-/")
 
 ;; gtags
 (autoload 'gtags-mode "gtags" "" t)
@@ -128,7 +130,8 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/yasnippet"))
 (require 'yasnippet)
 (setq yas-snippet-dirs
-      '("~/.emacs.d/yasnippet/snippets"))
+      '("~/.emacs.d/yasnippet/snippets"
+        "~/.emacs.d/my_snippets/"))
 (yas-global-mode t)
 
 ;; lisp
@@ -136,6 +139,32 @@
 (add-to-list 'load-path "~/.emacs.d/slime-2012-09-03")  ; your SLIME directory
 (require 'slime)
 (slime-setup)
+
+;; php-mode
+(require 'php-mode)
+(add-hook 'php-mode (lambda ()
+                      (flymake-mode)))
+
+;; web-mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+; switch between html-mode and web-mode
+(let ((web-hook (lambda ()
+                  (local-set-key (kbd "M-`")
+                                 (lambda ()
+                                   (interactive)
+                                   (if (eq 'web-mode major-mode)
+                                       (html-mode)
+                                     (web-mode)))))))
+  (add-hook 'web-mode-hook web-hook)
+  (add-hook 'html-mode-hook web-hook))
+
 
 ;; speedbar 
 (setq speedbar-show-unknown-files t)

@@ -1,0 +1,4 @@
+# name: php echo
+# key: echo
+# --
+<?php echo ${\$var}; ?>
