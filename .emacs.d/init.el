@@ -10,10 +10,21 @@
 
 ;; lisp load path
 (add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'custom-theme-load-path "~/.emacs.d")
+
+(custom-set-variables
+ '(custom-safe-themes
+   '("608eb09bdd67de505df53ea96d2b46e5a9ac16241a238dd3ab8001e7852d9659"
+     "a7e47993e8887d433c83ac082c954bfe566bcfb1fcf0165c3e52fc9ccd37cf9b" default)))
+(load-theme 'molokai)
+; (load-theme 'emacslive-cyberpunk)
+
+;; hl-line-mode
+(global-hl-line-mode t)
 
 ;; cursor
 (blink-cursor-mode -1)
-(set-default 'cursor-type 'bar)
+; (set-default 'cursor-type 'bar)
 
 ;; paredit
 (require 'paredit)
@@ -26,10 +37,8 @@
   (add-hook 'emacs-lisp-mode-hook hook))
 
 (cond (window-system (progn
-                       (set-fringe-mode '(1 . 1))
                        (scroll-bar-mode -1)
-                       (tool-bar-mode -1)
-                       (load-theme 'dichromacy t))))
+                       (tool-bar-mode -1))))
 
 ;; smooth scrolling
 (require 'smooth-scrolling)
@@ -142,8 +151,8 @@
 
 ;; php-mode
 (require 'php-mode)
-(add-hook 'php-mode (lambda ()
-                      (flymake-mode)))
+(add-hook 'php-mode-hook (lambda ()
+                      (flymake-mode t)))
 
 ;; web-mode
 (require 'web-mode)
@@ -168,3 +177,12 @@
 
 ;; speedbar 
 (setq speedbar-show-unknown-files t)
+
+
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
