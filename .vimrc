@@ -28,6 +28,7 @@ if has("gui")
     nnoremap k gk
     xnoremap j gj
     xnoremap k gk
+    set gfn=Menlo\ Regular:h16
 else
     set nowrap
 endif
