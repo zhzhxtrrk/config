@@ -80,6 +80,10 @@
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
+;; slim-mode
+(autoload 'slim-mode "slim-mode" "Slim editing mode." t)
+(add-to-list 'auto-mode-alist '("\\.slim" . slim-mode))
+
 ;; textmate
 (require 'textmate)
 (textmate-mode t)
