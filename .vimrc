@@ -28,6 +28,7 @@ if has("gui")
     nnoremap k gk
     xnoremap j gj
     xnoremap k gk
+    set guifont=Menlo\ Regular:h14
 else
     set nowrap
 endif

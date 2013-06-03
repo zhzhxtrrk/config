@@ -37,6 +37,8 @@
   (add-hook 'emacs-lisp-mode-hook hook))
 
 (cond (window-system (progn
+                       (add-to-list 'default-frame-alist '(height . 50))
+                       (add-to-list 'default-frame-alist '(width . 160))
                        (scroll-bar-mode -1)
                        (tool-bar-mode -1))))
 
