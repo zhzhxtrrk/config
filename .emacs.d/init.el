@@ -71,6 +71,8 @@
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
 
 ;; ruby-mode
+(add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
+
 (defvar ruby-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-m") 'reindent-then-newline-and-indent)
@@ -84,6 +86,19 @@
 
 ;; slim-mode
 (require 'slim-mode)
+
+;; coffee-mode
+(add-to-list 'load-path "~/.emacs.d/coffee-mode/")
+(require 'coffee-mode)
+
+;; scss-mode
+(add-to-list 'load-path "~/.emacs.d/scss-mode/")
+(require 'scss-mode)
+
+;; yaml-mode
+(add-to-list 'load-path "~/.emacs.d/yaml-mode/")
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;; textmate
 (require 'textmate)
