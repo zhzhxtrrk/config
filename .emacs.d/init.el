@@ -94,6 +94,7 @@
 ;; scss-mode
 (add-to-list 'load-path "~/.emacs.d/scss-mode/")
 (require 'scss-mode)
+(setq scss-compile-at-save nil)
 
 ;; yaml-mode
 (add-to-list 'load-path "~/.emacs.d/yaml-mode/")
