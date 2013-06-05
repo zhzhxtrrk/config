@@ -31,3 +31,6 @@
 [submodule ".emacs.d/scss-mode"]
 	path = .emacs.d/scss-mode
 	url = git://github.com/antonj/scss-mode.git
+[submodule ".emacs.d/rvm.el"]
+	path = .emacs.d/rvm.el
+	url = git://github.com/senny/rvm.el.git

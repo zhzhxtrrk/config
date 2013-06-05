@@ -105,6 +105,11 @@
 (require 'textmate)
 (textmate-mode t)
 
+;; rvm.el
+(add-to-list 'load-path "~/.emacs.d/rvm.el/")
+(require 'rvm)
+(rvm-use-default)
+
 ;; quick switch
 (defvar *my-switch-table*
   '((("m" "mm" "c" "cpp" "cxx" "cc") ("h" "hpp" "hh"))))
