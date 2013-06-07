@@ -112,8 +112,6 @@
 (add-to-list 'load-path "~/.emacs.d/projectile")
 (require 'projectile)
 (projectile-global-mode)
-(setq projectile-use-native-indexing t)
-(setq projectile-enable-caching t)
 
 ;; rvm.el
 (add-to-list 'load-path "~/.emacs.d/rvm.el/")
