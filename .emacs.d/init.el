@@ -39,6 +39,9 @@
 (cond (window-system (progn
                        (add-to-list 'default-frame-alist '(height . 50))
                        (add-to-list 'default-frame-alist '(width . 160))
+                       (add-to-list 'default-frame-alist '(font . "Source Code Pro"))
+                       (set-fontset-font t 'han (font-spec :family "Hei"))
+                       (setq face-font-rescale-alist '(("Hei" . 1.1)))
                        (scroll-bar-mode -1)
                        (tool-bar-mode -1))))
 
