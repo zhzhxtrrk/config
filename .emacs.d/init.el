@@ -201,15 +201,6 @@ Symbols matching the text at point are put first in the completion list."
       (my-try-switch (file-name-sans-extension file-path)
                      (my-possible-exts (file-name-extension file-path))))))
 
-;; compile
-(setq compilation-scroll-output t)
-(defun my-compile-command ()
-  (interactive)
-  (setq compile-command (let (root (textmate-project-root))
-                          (cond (root (concat "make -k " "-C " root " "))
-                                (t "make -k "))))
-  (call-interactively 'compile))
-
 ;; auto-complete
 (add-to-list 'load-path "~/.emacs.d/popup-el")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
@@ -271,3 +262,8 @@ Symbols matching the text at point are put first in the completion list."
 
 ;; speedbar 
 (setq speedbar-show-unknown-files t)
+
+;; server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
