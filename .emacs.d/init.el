@@ -51,7 +51,7 @@
 ;; common key bindings
 (global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key [(f4)] 'delete-window)
-(global-set-key [(f6)] 'my-compile-command)
+(global-set-key [(f6)] 'projectile-compile-project)
 (global-set-key [(f11)] 'delete-other-windows)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
