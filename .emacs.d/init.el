@@ -16,7 +16,8 @@
  '(custom-safe-themes
    '("608eb09bdd67de505df53ea96d2b46e5a9ac16241a238dd3ab8001e7852d9659"
      "a7e47993e8887d433c83ac082c954bfe566bcfb1fcf0165c3e52fc9ccd37cf9b" default)))
-(load-theme 'molokai)
+; (load-theme 'molokai)
+(load-theme 'leuven)
 ; (load-theme 'emacslive-cyberpunk)
 
 ;; hl-line-mode
@@ -25,6 +26,7 @@
 ;; cursor
 (blink-cursor-mode -1)
 ; (set-default 'cursor-type 'bar)
+(set-cursor-color 'orange)
 
 ;; paredit
 (require 'paredit)
@@ -37,9 +39,9 @@
   (add-hook 'emacs-lisp-mode-hook hook))
 
 (cond (window-system (progn
-                       (add-to-list 'default-frame-alist '(height . 50))
+                       (add-to-list 'default-frame-alist '(height . 45))
                        (add-to-list 'default-frame-alist '(width . 160))
-                       (add-to-list 'default-frame-alist '(font . "Source Code Pro"))
+                       (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
                        (set-fontset-font t 'han (font-spec :family "Hei"))
                        (setq face-font-rescale-alist '(("Hei" . 1.1)))
                        (scroll-bar-mode -1)
