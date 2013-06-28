@@ -33,7 +33,6 @@ set hlsearch
 set wildmenu
 
 set ruler
-set showcmd
 set number
 set scrolloff=3
 
@@ -45,7 +44,7 @@ if has("gui")
     nnoremap k gk
     xnoremap j gj
     xnoremap k gk
-    set guifont=Menlo\ Regular:h14
+    set guifont=Source\ Code\ Pro:h14
 else
     set nowrap
 endif
@@ -80,3 +79,5 @@ set laststatus=2
 " use c syntax for objc .h files
 let g:c_syntax_for_h=1
 
+" set ft=slim automantically
+autocmd BufNewFile,BufRead *.slim set ft=slim
