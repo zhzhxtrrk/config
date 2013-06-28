@@ -31,3 +31,6 @@
 [submodule ".emacs.d/lua-mode"]
 	path = .emacs.d/lua-mode
 	url = https://github.com/immerrr/lua-mode.git
+[submodule ".emacs.d/ack-el"]
+	path = .emacs.d/ack-el
+	url = https://github.com/leoliu/ack-el.git

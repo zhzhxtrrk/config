@@ -121,6 +121,10 @@
 (require 'projectile)
 (projectile-global-mode)
 
+;; ack
+(add-to-list 'load-path "~/.emacs.d/ack-el")
+(require 'ack)
+
 ;; rvm.el
 (add-to-list 'load-path "~/.emacs.d/rvm.el/")
 (require 'rvm)
