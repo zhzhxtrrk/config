@@ -17,8 +17,8 @@
    '("608eb09bdd67de505df53ea96d2b46e5a9ac16241a238dd3ab8001e7852d9659"
      "a7e47993e8887d433c83ac082c954bfe566bcfb1fcf0165c3e52fc9ccd37cf9b" default)))
 (load-theme 'molokai)
-; (load-theme 'leuven)
-; (load-theme 'emacslive-cyberpunk)
+;; (load-theme 'leuven)
+;; (load-theme 'emacslive-cyberpunk)
 
 ;; hl-line-mode
 (global-hl-line-mode t)
@@ -29,7 +29,7 @@
 (set-cursor-color 'orange)
 
 ;; linum-mode
-; (global-linum-mode t)
+;; (global-linum-mode t)
 
 ;; paredit
 (require 'paredit)
@@ -242,7 +242,11 @@ Symbols matching the text at point are put first in the completion list."
 ;; php-mode
 (require 'php-mode)
 (add-hook 'php-mode-hook (lambda ()
-                      (flymake-mode t)))
+                           (local-set-key (kbd "M-`")
+                                          (lambda ()
+                                            (interactive)
+                                            (web-mode)))
+                           (flymake-mode t)))
 
 ;; web-mode
 (require 'web-mode)
@@ -253,7 +257,7 @@ Symbols matching the text at point are put first in the completion list."
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-; switch between html-mode and web-mode
+;; switch between html-mode and web-mode
 (let ((web-hook (lambda ()
                   (local-set-key (kbd "M-`")
                                  (lambda ()
@@ -266,8 +270,8 @@ Symbols matching the text at point are put first in the completion list."
 
 ;; eshell
 (setq eshell-cmpl-ignore-case t)
-; (add-hook 'eshell-mode-hook (lambda ()
-;                               (linum-mode 0)))
+;; (add-hook 'eshell-mode-hook (lambda ()
+;;                               (linum-mode 0)))
 
 ;; speedbar 
 (setq speedbar-show-unknown-files t)
