@@ -217,7 +217,7 @@ Symbols matching the text at point are put first in the completion list."
 (add-to-list 'ac-modes 'objc-mode)
 (ac-config-default)
 (global-auto-complete-mode t)
-(setq ac-auto-start 2)
+(setq ac-auto-start nil)
 (setq ac-trigger-key "M-/")
 
 ;; gtags
@@ -244,6 +244,7 @@ Symbols matching the text at point are put first in the completion list."
 (slime-setup)
 
 ;; php-mode
+(add-to-list 'load-path "~/.emacs.d/php-mode")
 (require 'php-mode)
 (add-hook 'php-mode-hook (lambda ()
                            (local-set-key (kbd "M-`")
@@ -253,6 +254,7 @@ Symbols matching the text at point are put first in the completion list."
                            (flymake-mode t)))
 
 ;; web-mode
+(add-to-list 'load-path "~/.emacs.d/web-mode")
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
