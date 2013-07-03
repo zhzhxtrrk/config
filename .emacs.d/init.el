@@ -16,8 +16,8 @@
  '(custom-safe-themes
    '("608eb09bdd67de505df53ea96d2b46e5a9ac16241a238dd3ab8001e7852d9659"
      "a7e47993e8887d433c83ac082c954bfe566bcfb1fcf0165c3e52fc9ccd37cf9b" default)))
-(load-theme 'molokai)
-;; (load-theme 'leuven)
+;; (load-theme 'molokai)
+(load-theme 'leuven)
 ;; (load-theme 'emacslive-cyberpunk)
 
 ;; hl-line-mode
