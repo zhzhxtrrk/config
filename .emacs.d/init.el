@@ -16,17 +16,9 @@
  '(custom-safe-themes
    '("608eb09bdd67de505df53ea96d2b46e5a9ac16241a238dd3ab8001e7852d9659"
      "a7e47993e8887d433c83ac082c954bfe566bcfb1fcf0165c3e52fc9ccd37cf9b" default)))
-;; (load-theme 'molokai)
-(load-theme 'leuven)
-;; (load-theme 'emacslive-cyberpunk)
 
 ;; hl-line-mode
 (global-hl-line-mode t)
-
-;; cursor
-(blink-cursor-mode -1)
-;; (set-default 'cursor-type 'bar)
-(set-cursor-color 'orange)
 
 ;; linum-mode
 ;; (global-linum-mode t)
@@ -42,13 +34,22 @@
   (add-hook 'emacs-lisp-mode-hook hook))
 
 (cond (window-system (progn
-                       (add-to-list 'default-frame-alist '(height . 45))
-                       (add-to-list 'default-frame-alist '(width . 160))
+                       ;; (load-theme 'molokai)
+                       (load-theme 'leuven)
+                       ;; (load-theme 'emacslive-cyberpunk)
+
+                       ;; cursor
+                       (blink-cursor-mode -1)
+                       (set-cursor-color 'orange)
+
+                       ;; (add-to-list 'default-frame-alist '(height . 45))
+                       ;; (add-to-list 'default-frame-alist '(width . 160))
                        (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
                        (set-fontset-font t 'han (font-spec :family "STHeiti"))
                        (setq face-font-rescale-alist '(("STHeiti" . 1.2)))
                        (scroll-bar-mode -1)
-                       (tool-bar-mode -1))))
+                       (tool-bar-mode -1)))
+      (t (load-theme 'emacslive-cyberpunk)))
 
 ;; smooth scrolling
 (require 'smooth-scrolling)
@@ -93,6 +94,11 @@
 ;; lua-mode
 (add-to-list 'load-path "~/.emacs.d/lua-mode")
 (require 'lua-mode)
+
+(require 'vtl)
+(add-to-list 'auto-mode-alist '("\\.vm$" . html-mode))
+(add-hook 'html-mode-hook (lambda ()
+                            (vtl-mode)))
 
 ;; slim-mode
 (require 'slim-mode)
