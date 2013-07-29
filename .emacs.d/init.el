@@ -95,11 +95,6 @@
 (add-to-list 'load-path "~/.emacs.d/lua-mode")
 (require 'lua-mode)
 
-(require 'vtl)
-(add-to-list 'auto-mode-alist '("\\.vm$" . html-mode))
-(add-hook 'html-mode-hook (lambda ()
-                            (vtl-mode)))
-
 ;; slim-mode
 (require 'slim-mode)
 
