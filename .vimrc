@@ -36,8 +36,6 @@ set ruler
 set number
 set scrolloff=3
 
-colo badwolf
-
 if has("gui")
     set go=
     nnoremap j gj
@@ -45,6 +43,7 @@ if has("gui")
     xnoremap j gj
     xnoremap k gk
     set guifont=Source\ Code\ Pro:h14
+    colo badwolf
 else
     set nowrap
 endif

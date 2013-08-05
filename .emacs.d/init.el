@@ -34,22 +34,17 @@
   (add-hook 'emacs-lisp-mode-hook hook))
 
 (cond (window-system (progn
-                       ;; (load-theme 'molokai)
                        (load-theme 'leuven)
-                       ;; (load-theme 'emacslive-cyberpunk)
 
                        ;; cursor
                        (blink-cursor-mode -1)
                        (set-cursor-color 'orange)
 
-                       ;; (add-to-list 'default-frame-alist '(height . 45))
-                       ;; (add-to-list 'default-frame-alist '(width . 160))
                        (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
                        (set-fontset-font t 'han (font-spec :family "STHeiti"))
                        (setq face-font-rescale-alist '(("STHeiti" . 1.2)))
                        (scroll-bar-mode -1)
-                       (tool-bar-mode -1)))
-      (t (load-theme 'emacslive-cyberpunk)))
+                       (tool-bar-mode -1))))
 
 ;; smooth scrolling
 (require 'smooth-scrolling)
@@ -189,13 +184,13 @@ Symbols matching the text at point are put first in the completion list."
 
 (defun my-possible-exts (ext)
   (when *my-switch-table*
-    (let ((swith-item (car *my-switch-table*)))
-      (let ((c1 (car swith-item))
-            (c2 (cadr swith-item)))
-        (cond ((find ext c1 :test #'equal) c2)
-              ((find ext c2 :test #'equal) c1)
-              (t (let ((*my-switch-table* (cdr *my-switch-table*)))
-                   (my-possible-exts ext))))))))
+    (let* ((swith-item (car *my-switch-table*))
+           (c1 (car swith-item))
+           (c2 (cadr swith-item)))
+      (cond ((find ext c1 :test #'equal) c2)
+            ((find ext c2 :test #'equal) c1)
+            (t (let ((*my-switch-table* (cdr *my-switch-table*)))
+                 (my-possible-exts ext)))))))
 
 (defun my-try-switch (file-path-without-ext possible-exts)
   (when possible-exts
