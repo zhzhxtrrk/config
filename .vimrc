@@ -9,11 +9,11 @@ Bundle 'gmarik/vundle'
 Bundle 'slim-template/vim-slim'
 Bundle 'snipMate'
 Bundle 'ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mbbill/undotree'
 Bundle 'taglist.vim'
 Bundle 'sjl/badwolf'
+Bundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on
 syntax on
@@ -43,7 +43,9 @@ if has("gui")
     xnoremap j gj
     xnoremap k gk
     set guifont=Source\ Code\ Pro:h14
-    colo badwolf
+
+    set background=light
+    colo solarized
 else
     set nowrap
 endif
@@ -80,3 +82,6 @@ let g:c_syntax_for_h=1
 
 " set ft=slim automantically
 autocmd BufNewFile,BufRead *.slim set ft=slim
+
+" Powerline
+Bundle 'Lokaltog/vim-powerline'
