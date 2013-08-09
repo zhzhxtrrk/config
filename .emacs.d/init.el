@@ -1,3 +1,31 @@
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+(defvar my-packages '(paredit
+                      clojure-mode
+                      nrepl
+                      rainbow-delimiters
+                      rainbow-mode
+                      smooth-scroll
+                      lua-mode
+                      coffee-mode
+                      scss-mode
+                      yaml-mode
+                      ack
+                      rvm
+                      auto-complete
+                      ac-slime
+                      ac-nrepl
+                      ggtags
+                      slime
+                      projectile))
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+
+
 ;; no backup files
 (setq make-backup-files nil)
 
@@ -10,28 +38,16 @@
 
 ;; lisp load path
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'custom-theme-load-path "~/.emacs.d")
-
-(custom-set-variables
- '(custom-safe-themes
-   '("608eb09bdd67de505df53ea96d2b46e5a9ac16241a238dd3ab8001e7852d9659"
-     "a7e47993e8887d433c83ac082c954bfe566bcfb1fcf0165c3e52fc9ccd37cf9b" default)))
 
 ;; hl-line-mode
 (global-hl-line-mode t)
 
-;; linum-mode
-;; (global-linum-mode t)
-
-;; paredit
-(require 'paredit)
-
-(require 'rainbow-delimiters)
 (let ((hook (lambda ()
               (paredit-mode t)
               (rainbow-delimiters-mode t))))
   (add-hook 'lisp-mode-hook hook)
-  (add-hook 'emacs-lisp-mode-hook hook))
+  (add-hook 'emacs-lisp-mode-hook hook)
+  (add-hook 'clojure-mode-hook hook))
 
 (cond (window-system (progn
                        (load-theme 'leuven)
@@ -45,9 +61,6 @@
                        (setq face-font-rescale-alist '(("STHeiti" . 1.2)))
                        (scroll-bar-mode -1)
                        (tool-bar-mode -1))))
-
-;; smooth scrolling
-(require 'smooth-scrolling)
 
 ;; common key bindings
 (global-set-key (kbd "C-m") 'newline-and-indent)
@@ -86,45 +99,27 @@
     map)
   "keymap used in ruby mode")
 
-;; lua-mode
-(add-to-list 'load-path "~/.emacs.d/lua-mode")
-(require 'lua-mode)
-
 ;; slim-mode
 (require 'slim-mode)
 
-;; coffee-mode
-(add-to-list 'load-path "~/.emacs.d/coffee-mode/")
-(require 'coffee-mode)
-
-;; scss-mode
-(add-to-list 'load-path "~/.emacs.d/scss-mode/")
-(require 'scss-mode)
+;; scss
 (setq scss-compile-at-save nil)
 
 ;; yaml-mode
-(add-to-list 'load-path "~/.emacs.d/yaml-mode/")
-(require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;; ido
 (ido-mode t)
 
-;; projectile
-(add-to-list 'load-path "~/.emacs.d/s.el")
-(add-to-list 'load-path "~/.emacs.d/dash.el")
-(add-to-list 'load-path "~/.emacs.d/projectile")
-(require 'projectile)
-(projectile-global-mode)
-
-;; ack
-(add-to-list 'load-path "~/.emacs.d/ack-el")
-(require 'ack)
-
-;; rvm.el
-(add-to-list 'load-path "~/.emacs.d/rvm.el/")
-(require 'rvm)
+;; rvm
 (rvm-use-default)
+
+;; auto-complete
+(require 'auto-complete-config)
+(ac-config-default)
+
+;; projectile
+(projectile-global-mode t)
 
 ;; goto-symbol
 (require 'imenu)
@@ -206,43 +201,11 @@ Symbols matching the text at point are put first in the completion list."
       (my-try-switch (file-name-sans-extension file-path)
                      (my-possible-exts (file-name-extension file-path))))))
 
-;; auto-complete
-(add-to-list 'load-path "~/.emacs.d/popup-el")
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
-(require 'auto-complete-config)
-(add-to-list 'ac-modes 'objc-mode)
-(ac-config-default)
-(global-auto-complete-mode t)
-(setq ac-auto-start nil)
-(setq ac-trigger-key "M-/")
-
-;; gtags
-(autoload 'gtags-mode "gtags" "" t)
-(defun my-enable-gtags ()
-  (interactive)
-  (setq gtags-suggested-key-mapping t)
-  (setq gtags-auto-update t)
-  (gtags-mode t)
-  (gtags-visit-rootdir))
-
-;; yasnippet
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/yasnippet"))
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/yasnippet/snippets"
-        "~/.emacs.d/my_snippets/"))
-(yas-global-mode t)
-
 ;; lisp
 (setq inferior-lisp-program "/usr/local/bin/ccl64") ; your Lisp system
-(add-to-list 'load-path "~/.emacs.d/slime-2012-09-03")  ; your SLIME directory
-(require 'slime)
-(slime-setup)
 
 ;; eshell
 (setq eshell-cmpl-ignore-case t)
-;; (add-hook 'eshell-mode-hook (lambda ()
-;;                               (linum-mode 0)))
 
 ;; speedbar 
 (setq speedbar-show-unknown-files t)
