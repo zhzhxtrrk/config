@@ -8,7 +8,7 @@
                       nrepl
                       rainbow-delimiters
                       rainbow-mode
-                      smooth-scroll
+                      smooth-scrolling
                       lua-mode
                       coffee-mode
                       scss-mode
@@ -81,6 +81,9 @@
 
 ;; highlight (){}
 (show-paren-mode t)
+
+;; smooth-scrolling
+(setq smooth-scroll-margin 3)
 
 ;; objc
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
