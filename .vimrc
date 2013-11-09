@@ -42,10 +42,9 @@ if has("gui")
     nnoremap k gk
     xnoremap j gj
     xnoremap k gk
-    set guifont=Source\ Code\ Pro:h14
+    set guifont=Monaco:h14
 
-    set background=light
-    colo solarized
+    colo badwolf
 else
     set nowrap
 endif

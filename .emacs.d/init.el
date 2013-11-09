@@ -40,9 +40,6 @@
 ;; lisp load path
 (add-to-list 'load-path "~/.emacs.d")
 
-;; hl-line-mode
-(global-hl-line-mode t)
-
 (let ((hook (lambda ()
               (paredit-mode t)
               (rainbow-delimiters-mode t))))
@@ -51,9 +48,9 @@
   (add-hook 'clojure-mode-hook hook))
 
 (cond (window-system (progn
+                       (global-hl-line-mode t)
+                       
                        (load-theme 'solarized-dark t)
-
-                       (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
                        (set-fontset-font t 'han (font-spec :family "STHeiti"))
                        (setq face-font-rescale-alist '(("STHeiti" . 1.2)))
                        (scroll-bar-mode -1)
