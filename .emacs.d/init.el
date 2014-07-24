@@ -1,11 +1,13 @@
 (require 'package)
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+             '("marmalade" . "http://marmalade-repo.org/packages/")
+             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 (package-initialize)
 
 (defvar my-packages '(paredit
-                      clojure-mode
-                      nrepl
+                      cider
+                      haskell-mode
+                      ghc
                       rainbow-delimiters
                       rainbow-mode
                       smooth-scrolling
@@ -15,13 +17,14 @@
                       yaml-mode
                       ack
                       rvm
-                      auto-complete
-                      ac-slime
-                      ac-nrepl
+                      company
+                      company-cmake
                       ggtags
-                      slime
                       projectile
-                      solarized-theme))
+                      js2-mode
+                      solarized-theme
+                      color-theme-sanityinc-tomorrow
+                      cpputils-cmake))
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -34,27 +37,30 @@
 (if (file-exists-p "~/.userinfo.el")
     (load "~/.userinfo.el")
   (progn
-    (setq user-full-name "Mockup user")
-    (setq user-mail-address "mOckUp@UsEr.cOm")))
+    (setq user-full-name "Steven Zhang")
+    (setq user-mail-address "zhzhxtrrk@gmail.com")))
 
 ;; lisp load path
 (add-to-list 'load-path "~/.emacs.d")
 
-(let ((hook (lambda ()
-              (paredit-mode t)
-              (rainbow-delimiters-mode t))))
-  (add-hook 'lisp-mode-hook hook)
-  (add-hook 'emacs-lisp-mode-hook hook)
-  (add-hook 'clojure-mode-hook hook))
-
 (cond (window-system (progn
                        (global-hl-line-mode t)
-                       
-                       (load-theme 'solarized-dark t)
+
+                       (add-to-list 'default-frame-alist '(width . 120))
+                       (add-to-list 'default-frame-alist '(height . 45))
+
+                       (blink-cursor-mode -1)
+                       ;; (load-theme 'solarized-dark t)
+                       (load-theme 'sanityinc-tomorrow-day t)
+                       (set-fringe-style -1)
+                       (add-to-list 'default-frame-alist '(font . "Source Code Pro 13"))
                        (set-fontset-font t 'han (font-spec :family "STHeiti"))
-                       (setq face-font-rescale-alist '(("STHeiti" . 1.2)))
+                       (setq face-font-rescale-alist '(("STHeiti" . 1.1)))
                        (scroll-bar-mode -1)
-                       (tool-bar-mode -1))))
+                       (tool-bar-mode -1)))
+      (t (progn
+           ;; (load-theme 'solarized-dark t)
+           (load-theme 'sanityinc-tomorrow-night t))))
 
 ;; common key bindings
 (global-set-key (kbd "C-m") 'newline-and-indent)
@@ -82,6 +88,16 @@
 ;; smooth-scrolling
 (setq smooth-scroll-margin 3)
 
+;; clojure
+(add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
+
+(let ((hook (lambda ()
+              (paredit-mode t)
+              (rainbow-delimiters-mode t))))
+  (add-hook 'lisp-mode-hook hook)
+  (add-hook 'emacs-lisp-mode-hook hook)
+  (add-hook 'clojure-mode-hook hook))
+
 ;; objc
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
@@ -89,12 +105,19 @@
 
 ;; ruby-mode
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
-
 (defvar ruby-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-m") 'reindent-then-newline-and-indent)
     map)
   "keymap used in ruby mode")
+
+;; cmake-mode
+(load-library "cmake-mode")
+(add-to-list 'auto-mode-alist '("CMakeLists.txt$" . cmake-mode))
+(add-to-list 'auto-mode-alist '("\\.cmake$" . cmake-mode))
+
+;; js2-mode
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; slim-mode
 (require 'slim-mode)
@@ -110,10 +133,6 @@
 
 ;; rvm
 (rvm-use-default)
-
-;; auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
 
 ;; projectile
 (projectile-global-mode t)
@@ -199,7 +218,16 @@ Symbols matching the text at point are put first in the completion list."
                      (my-possible-exts (file-name-extension file-path))))))
 
 ;; lisp
-(setq inferior-lisp-program "/usr/local/bin/ccl64") ; your Lisp system
+(add-to-list 'load-path "~/.emacs.d/slime-2.6")
+(require 'slime)
+(slime-setup)
+(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (if (derived-mode-p 'c-mode 'c++-mode)
+                (cppcm-reload-all)
+              )))
 
 ;; eshell
 (setq eshell-cmpl-ignore-case t)

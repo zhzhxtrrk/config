@@ -14,6 +14,10 @@ Bundle 'mbbill/undotree'
 Bundle 'taglist.vim'
 Bundle 'sjl/badwolf'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'vim-scripts/paredit.vim'
 
 filetype plugin indent on
 syntax on
@@ -31,6 +35,7 @@ set showmatch
 set incsearch
 set hlsearch
 set wildmenu
+set smarttab
 
 set ruler
 set number
@@ -42,7 +47,7 @@ if has("gui")
     nnoremap k gk
     xnoremap j gj
     xnoremap k gk
-    set guifont=Monaco:h14
+    set guifont=Source\ Code\ Pro:h12
 
     colo badwolf
 else
@@ -84,3 +89,5 @@ autocmd BufNewFile,BufRead *.slim set ft=slim
 
 " Powerline
 Bundle 'Lokaltog/vim-powerline'
+
+au BufNewFile,BufRead *.hs set smartindent
