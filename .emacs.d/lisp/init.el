@@ -42,7 +42,7 @@
     (setq user-mail-address "zhzhxtrrk@gmail.com")))
 
 ;; lisp load path
-(add-to-list 'load-path "~/.emacs.d/lisp")
+; (add-to-list 'load-path "~/.emacs.d")
 
 (cond (window-system (progn
                        (global-hl-line-mode t)

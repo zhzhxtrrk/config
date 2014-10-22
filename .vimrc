@@ -47,8 +47,9 @@ if has("gui")
     nnoremap k gk
     xnoremap j gj
     xnoremap k gk
-    set guifont=Source\ Code\ Pro:h12
+    set guifont=Source\ Code\ Pro:h14
 
+    set background=dark
     colo badwolf
 else
     set nowrap
