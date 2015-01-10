@@ -51,10 +51,10 @@
                        ;; (add-to-list 'default-frame-alist '(height . 45))
 
                        (blink-cursor-mode -1)
-                       (load-theme 'solarized-dark t)
+                       (load-theme 'solarized-light t)
                        ;; (load-theme 'sanityinc-tomorrow-night t)
                        (set-fringe-style -1)
-                       (add-to-list 'default-frame-alist '(font . "Source Code Pro 15"))
+                       (add-to-list 'default-frame-alist '(font . "SourceCodePro 13"))
                        (set-fontset-font t 'han (font-spec :family "STHeiti"))
                        (setq face-font-rescale-alist '(("STHeiti" . 1.1)))
                        (scroll-bar-mode -1)
@@ -119,9 +119,6 @@
 
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-;; slim-mode
-(require 'slim-mode)
 
 ;; scss
 (setq scss-compile-at-save nil)
