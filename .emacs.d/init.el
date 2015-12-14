@@ -1,3 +1,6 @@
+(if (string-equal "darwin" (symbol-name system-type))
+      (setenv "PATH" (concat "/usr/local/bin:~/.cabal/bin:" (getenv "PATH"))))
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/")
@@ -6,35 +9,38 @@
 (package-initialize)
 
 (defvar my-packages '(paredit
-                      cider
-                      haskell-mode
-                      tuareg
-                      ghc
                       rainbow-delimiters
                       rainbow-mode
                       smooth-scrolling
-                      lua-mode
-                      yaml-mode
-                      ack
-                      company
-                      php-mode
-                      flymake-php
-                      company-jedi
-                      web-mode
-                      jinja2-mode
-                      virtualenvwrapper
-                      markdown-mode
-                      feature-mode
-                      ggtags
                       projectile
+                      company
+
+                      lua-mode
+                      
+                      php-mode
+                      web-mode
+
+                      less-css-mode
+                      sass-mode
                       js2-mode
-                      slime
+                      tide
+
+                      cider
+
+                      haskell-mode
+                      flycheck-haskell
+                      company-ghc
+                      hi2
+                      
+                      cmake-mode
+
+                      badwolf-theme
                       solarized-theme
                       color-theme-sanityinc-tomorrow))
 
 (dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+	   (when (not (package-installed-p p))
+	     (package-install p)))
 
 
 ;; no backup files
@@ -57,17 +63,17 @@
                        (add-to-list 'default-frame-alist '(height . 45))
 
                        (blink-cursor-mode -1)
-                       ;; (load-theme 'solarized-light t)
-                       (load-theme 'sanityinc-tomorrow-bright t)
-                       (set-fringe-style -1)
-                       ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro Light 13"))
-                       (set-fontset-font t 'han (font-spec :family "STHeiti"))
-                       (setq face-font-rescale-alist '(("STHeiti" . 1.1)))
+                       (load-theme 'badwolf t)
+                       ;; (load-theme 'solarized-dark t)
+                       ;; (load-theme 'leuven)
+                       ;; (set-fringe-style -1)
+                       (add-to-list 'default-frame-alist '(font . "Monaco 12"))
+                       (set-fontset-font t 'han (font-spec :family "PingFang SC"))
+                       (setq face-font-rescale-alist '(("PingFang SC" . 0.95)))
                        (scroll-bar-mode -1)
                        (tool-bar-mode -1)))
       (t (progn
-           ;; (load-theme 'solarized-dark t)
-           (load-theme 'sanityinc-tomorrow-bright t))))
+           (load-theme 'badwolf t))))
 
 ;; common key bindings
 (global-set-key (kbd "C-m") 'newline-and-indent)
@@ -92,39 +98,17 @@
 ;; smooth-scrolling
 (setq smooth-scroll-margin 3)
 
-;; clojure
-(add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
-
-(let ((hook (lambda ()
-              (paredit-mode t)
-              (rainbow-delimiters-mode t))))
-  (add-hook 'lisp-mode-hook hook)
-  (add-hook 'emacs-lisp-mode-hook hook)
-  (add-hook 'clojure-mode-hook hook))
+;; gbk first
+(prefer-coding-system 'gbk)
+(prefer-coding-system 'utf-8)
 
 ;; objc
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
 
-;; ruby-mode
-(add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
-(defvar ruby-mode-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-m") 'reindent-then-newline-and-indent)
-    map)
-  "keymap used in ruby mode")
-
-;; cmake-mode
-(load-library "cmake-mode")
-(add-to-list 'auto-mode-alist '("CMakeLists.txt$" . cmake-mode))
-(add-to-list 'auto-mode-alist '("\\.cmake$" . cmake-mode))
-
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-;; yaml-mode
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;; ido
 (ido-mode t)
@@ -135,40 +119,11 @@
 ;; projectile
 (projectile-global-mode t)
 
-;; python
-(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells) ;; if you want interactive shell support
-(venv-initialize-eshell) ;; if you want eshell support
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
-;; lisp
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-(setq slime-contribs '(slime-fancy))
-
+;; php
 (add-hook 'c-mode-common-hook
           (lambda ()
             (if (derived-mode-p 'php-mode)
-                (flymake-mode)
-              )))
-
-;; haskell
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
-;; ocaml
-(dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
-  (setenv (car var) (cadr var)))
-
-(add-to-list 'load-path (expand-file-name "../../share/emacs/site-lisp"
-                                          (getenv "OCAML_TOPLEVEL_PATH")))
-
-(autoload 'utop "utop" "Toplevel for OCaml" t)
-
-(autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
-(add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
-(add-hook 'typerex-mode-hook 'utop-setup-ocaml-buffer)
+                (flycheck-mode))))
 
 ;; path environment variable
 (setq exec-path (append (parse-colon-path (getenv "PATH"))
@@ -180,7 +135,67 @@
 ;; speedbar 
 (setq speedbar-show-unknown-files t)
 
+;; typescript
+(add-hook 'typescript-mode-hook
+          (lambda ()
+            (tide-setup)
+            (flycheck-mode +1)
+            (setq flycheck-check-syntax-automatically '(save mode-enabled))
+            (eldoc-mode +1)
+            ;; company is an optional dependency. You have to
+            ;; install it separately via package-install
+            (company-mode-on)))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; Tide can be used along with web-mode to edit tsx files
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (tide-setup)
+              (flycheck-mode +1)
+              (setq flycheck-check-syntax-automatically '(save mode-enabled))
+              (eldoc-mode +1)
+              (company-mode-on))))
+
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
+;; haskell
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (hi2-mode)
+            (flycheck-mode)
+            (ghc-init)
+            (interactive-haskell-mode)))
+
+(add-to-list 'company-backends 'company-ghc)
+(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
+
+
 ;; server
 (require 'server)
+
 (unless (server-running-p)
   (server-start))
+
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
